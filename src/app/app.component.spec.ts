@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'baseRest'`, () => {
+  it(`should have as title 'baseRestAngular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('baseRest');
+    expect(app.title).toEqual('baseRestAngular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('baseRest app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('baseRestAngular app is running!');
   });
 });

@@ -1,1 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeicons/primeicons.css";
+
+html, body, app-root {
+    height: 100%;
+}
+
+body {
+  position: relative;
+  margin: 0%;
+}
+
+app-root {
+  min-height: 100%;
+  display: block;
+  position: relative;
+  padding-bottom: 50px;
+}
+  
+app-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.p-menubar {
+  height: 25px;
+  font-size: small;
+  border: none;
+}
+
+.p-breadcrumb {
+  height: 25px;
+  font-size: small;
+  border: none;
+  padding-top: 2%;
+}
+
+.p-button.p-button-icon-only {
+  background: none;
+  border: none;
+  color: #495057;
+}
+
+.p-button.p-button-icon-only:hover {
+  background: #e9ecef;
+  border: none;
+  color: #495057;
+}
+
+button {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: rgb(1,75,160);
+    width: 50%;
+    margin-left:25%;
+    margin-right:25%;
+    display: block;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+  
+ .btn-disabled {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: rgb(156, 171, 212); 
+    width: 50%;
+    margin-left:25%;
+    margin-right:25%;
+    display: block;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+
+  .p-dialog {
+    width: 40%;
+  }
+  .p-dialog .p-dialog-header {
+    border-top-right-radius: 1.5rem;
+    border-top-left-radius: 1.5rem;
+    background-color: white;
+  }
+
+  .p-dialog .p-dialog-footer {
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    background-color: white;
+  }
+
+  .centrado {
+      text-align: center;
+  }
