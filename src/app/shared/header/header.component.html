@@ -1,0 +1,42 @@
+<div class="iconApp">ICONO APP</div>
+<div class="nombreApp">NOMBRE APP</div>
+
+<p-toast position="top-center" key="errorMensaje" (onClose)="clear()" >
+    <ng-template let-message pTemplate="message">
+        <span class="p-toast-message-icon pi pi-times-circle" ></span>
+        <div class="p-toast-message-text">
+            <div class="p-toast-detail">
+                <p innerHtml="{{message.detail}}"></p>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<p-toast position="top-center" key="successMensaje" (onClose)="clear()" >
+    <ng-template let-message pTemplate="message">
+        <span class="p-toast-message-icon pi pi-check" ></span>
+        <div class="p-toast-message-text">
+            <div class="p-toast-detail">
+                <p innerHtml="{{message.detail}}"></p>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<p-toast position="top-center" key="infoMensaje" (onClose)="clear()" >
+    <ng-template let-message pTemplate="message">
+        <span class="p-toast-message-icon pi pi-info-circle" ></span>
+        <div class="p-toast-message-text">
+            <div class="p-toast-detail">{{message.detail}}</div>
+        </div>
+    </ng-template>
+</p-toast>
+
+<p-toast position="top-center" key="warnMensaje" (onClose)="clear()" >
+    <ng-template let-message pTemplate="message">
+        <span class="p-toast-message-icon pi pi-exclamation-triangle" ></span>
+        <div class="p-toast-message-text">
+            <div class="p-toast-detail">{{message.detail}}</div>
+        </div>
+    </ng-template>
+</p-toast>

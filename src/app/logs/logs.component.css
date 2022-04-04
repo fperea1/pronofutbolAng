@@ -1,0 +1,21 @@
+.custom-table {
+    margin-top: 2px;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 10%;
+}
+
+.p-button.p-button-icon-only {
+    background-color: #4caf50;
+    color: white;
+}
+
+.p-button.p-button-icon-only:hover {
+    background-color: #495057;
+}

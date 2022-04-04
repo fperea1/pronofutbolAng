@@ -1,0 +1,31 @@
+:host .custom-form {
+  max-width: 30%;
+  height: 250px;
+  margin: 0px auto;
+  margin: auto;
+  border-radius: 2.5rem;
+  background-color: #ffffff;
+  color: black;
+  margin-top: 8%;
+  border: 2px solid rgb(1,75,160);
+}
+
+:host .custom-form .p-input-filled {
+
+  margin-left:20%;
+  margin-right:20%;
+}
+
+:host .custom-form .p-input-filled .bienvenida {
+  padding: 0.5rem 0;
+  font-weight: bold;
+  color:rgb(1,75,160);
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+:host .custom-form input {
+  margin: 0.5rem 0;
+  width: 100%;
+}

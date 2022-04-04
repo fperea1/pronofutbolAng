@@ -1,0 +1,33 @@
+<div class="custom-footer">
+
+<span class="contacto">
+    <i class="pi pi-envelope" aria-hidden="true" (click)="showDialog()" title="Contacto"></i>
+</span>
+
+
+</div>
+
+<p-dialog [(visible)]="display" >
+
+    <p-header >
+            Contacto con el administrador
+    </p-header>
+    <div class="dialog-form">
+    <form [formGroup]="contactForm" (ngSubmit)="contact()" method="post">
+        
+        <div class="p-input-filled" >
+            <span><input type="text" pInputText formControlName="asunto" size="32" placeholder="Asunto (*)"/></span>
+            
+            <span><textarea [rows]="5" [cols]="30" formControlName="consulta" 
+                required pInputTextarea placeholder="Consulta (*)"></textarea></span>
+        </div>
+
+            <button type="submit" [disabled]="!contactForm.valid" label="Enviar" [class.btn-disabled]="!contactForm.valid">Enviar</button>
+
+            <div class="centrado">(*) Campos obligatorios</div>
+    <p-footer></p-footer>
+
+    </form>
+</div>
+
+</p-dialog>

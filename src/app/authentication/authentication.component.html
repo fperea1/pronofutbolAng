@@ -1,0 +1,31 @@
+
+<div class="custom-form">
+    
+        <form [formGroup]="authenticationForm" (ngSubmit)="login()"  method="post">
+        
+            <div class="p-input-filled">
+                <h2 class="bienvenida">Login</h2>
+                <span class="p-input-icon-left">
+                    <i class="pi pi-user"></i>
+                    <input type="text" pInputText formControlName="username" placeholder="Usuario">         
+                </span>
+
+                <span class="p-input-icon-left">
+                    <i class="pi pi-lock"></i>
+                    <input type="password" pPassword formControlName="password" placeholder="Password" [feedback]="false" > 
+            
+                </span>
+            </div>
+            
+                <button type="submit" [disabled]="!authenticationForm.valid" label="Login" [class.btn-disabled]="!authenticationForm.valid" >Login</button>
+            
+
+        </form>
+    
+</div>
+
+
+
+
+
+

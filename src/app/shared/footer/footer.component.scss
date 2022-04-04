@@ -1,0 +1,37 @@
+.custom-footer {
+    height: 50px;
+    margin-top: 7%;
+    background-color: rgb(1,75,160); 
+    border-bottom: 2px solid white;
+  }
+
+  .contacto {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0px;
+    margin-right: 5%;
+  }
+
+  .pi-envelope {
+    color: white;
+    cursor: pointer;
+  }  
+  
+  :host .dialog-form input {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  :host .dialog-form textarea {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  button {
+    width: 30%;
+    margin-left:35%;
+    margin-right:35%;
+  }
+  

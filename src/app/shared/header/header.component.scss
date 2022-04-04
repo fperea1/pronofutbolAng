@@ -1,0 +1,17 @@
+:host {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(1,75,160); 
+    border-top: 2px solid white;
+    color: white;
+  }
+
+.iconApp {
+  width: 20%;
+}
+
+.nombreApp {
+  width: 80%;
+}
