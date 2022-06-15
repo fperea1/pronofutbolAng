@@ -1,15 +1,27 @@
 <div class="custom-table">
-    <p-table #dt [columns]="cols" [value]="logs" responsiveLayout="scroll" >
-        <ng-template pTemplate="caption">
-            <div class="flex">
-                <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2" 
-                    pTooltip="Exportar" tooltipPosition="bottom" (click)="exportar()"></button>
-            </div>
-        </ng-template>
+    <div class="flex">
+        <span class="titulo">{{titulo}}</span>
+        <span class="iconos">
+            <button type="button" pButton pRipple icon="pi pi-sync" class="p-button-success mr-2" 
+                pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2 excel" 
+                pTooltip="Exportar" tooltipPosition="bottom" (click)="exportar()"></button>
+        </span>
+    </div>
+    <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
+        [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
+        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No records found" >
+        
         <ng-template pTemplate="header" let-columns>
             <tr>
+                <th pResizableColumn pSortableColumn="{{col.field}}" *ngFor="let col of columns">
+                    {{col.header}} <p-sortIcon field="{{col.field}}"></p-sortIcon>
+                </th>
+            </tr>
+            <tr>
                 <th *ngFor="let col of columns">
-                    {{col.header}}
+                    <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
                 </th>
             </tr>
         </ng-template>

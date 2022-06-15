@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Authentication } from '../../authentication/authentication'; 
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,9 +14,9 @@ export class AuthenticationService {
     return this.http.post('autenticacion/generate-token', authentication, {responseType: 'text'});
   }
 
-  logout(): void {
+  logout(): Observable <any> {
   
-    this.http.get('logout');
+    return this.http.get('autenticacion/logout', {responseType: 'text'});
   }
 
 }

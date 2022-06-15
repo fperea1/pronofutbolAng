@@ -74,7 +74,12 @@ export class MenuComponent implements OnInit {
   }
 
   logout(): void {
-    this.authenticationService.logout();
+    this.authenticationService.logout().subscribe({
+      next: this.mensaje.bind(this)
+    });
+  }
+
+  mensaje(data: string): void {
     this.authorizationService.eliminarAuth();
     this.router.navigate(['']);
   }

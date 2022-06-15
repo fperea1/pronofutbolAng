@@ -7,15 +7,27 @@
 .flex {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.titulo {
+    margin-left: 10%;
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.5rem;
+}
+
+.iconos {
     margin-right: 10%;
 }
 
-.p-button.p-button-icon-only {
+.p-button.p-button-icon-only.excel {
     background-color: #4caf50;
     color: white;
 }
 
-.p-button.p-button-icon-only:hover {
+.p-button.p-button-icon-only.excel:hover {
     background-color: #495057;
 }
+
