@@ -58,7 +58,7 @@ export class LogsComponent implements OnInit {
 
   exportar() {
     
-		const filename = 'report_logs_' + formatDate(Date.now(),'yyyy-MM-dd', 'en-US') + '.xlsx';
+		const filename = 'report_' + formatDate(Date.now(),'yyyy-MM-dd', 'en-US') + '.xlsx';
     this.logService.getReportExcel(this.filtro).subscribe(blob => saveAs(blob, filename));
   }
 

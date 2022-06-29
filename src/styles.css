@@ -104,3 +104,10 @@ button.tam50 {
   .centrado {
       text-align: center;
   }
+
+  label {
+      text-align: center;
+      text-transform: capitalize;
+      font-weight: bold;
+      display: block;
+  }

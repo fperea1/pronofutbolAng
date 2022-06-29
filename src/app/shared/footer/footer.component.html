@@ -22,7 +22,8 @@
                 required pInputTextarea placeholder="Consulta (*)"></textarea></span>
         </div>
 
-            <button type="submit" [disabled]="!contactForm.valid" label="Enviar" [class.btn-disabled]="!contactForm.valid">Enviar</button>
+            <button type="submit" [disabled]="!contactForm.valid" label="Enviar" 
+                [class.btn-disabled]="!contactForm.valid" [class.tam50]="contactForm.valid">Enviar</button>
 
             <div class="centrado">(*) Campos obligatorios</div>
     <p-footer></p-footer>

@@ -1,0 +1,52 @@
+.custom-table {
+    margin-top: 2px;
+    max-width: 90%;
+    margin-left: 5%;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.titulo {
+    margin-left: 10%;
+    font-weight: 600;
+    color: #495057;
+    font-size: 1.5rem;
+}
+
+.iconos {
+    margin-right: 10%;
+}
+
+.p-button.p-button-icon-only.excel {
+    background-color: #4caf50;
+    color: white;
+}
+
+.p-button.p-button-icon-only.excel:hover {
+    background-color: #495057;
+}
+
+.p-button.p-button-icon-only.edit {
+    background-color: #f3d343;
+    color: white;
+}
+
+.p-button.p-button-icon-only.edit:hover {
+    background-color: #e9c111;
+}
+
+:host .dialog-form input {
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+:host .dialog-form button {
+    width: 30%;
+    margin-left:35%;
+    margin-right:35%;
+}

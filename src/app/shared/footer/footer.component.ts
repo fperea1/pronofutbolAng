@@ -37,6 +37,7 @@ export class FooterComponent implements OnInit {
 
   handleSucces(data: any): void {
     this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
+    this.display = false;
   }
 
   clear(): void {

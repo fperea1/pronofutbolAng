@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Log } from './log';
-import { Filter } from '../shared/filters/filter';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable()
