@@ -34,7 +34,12 @@
             <tr>
                 <td *ngFor="let col of columns">
                     <div *ngIf="col.header != ''; else columnEdit">
-                        {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
+                        <div *ngIf="col.header != 'Roles'; else columnRoles">
+                            {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
+                        </div>
+                        <ng-template #columnRoles>
+                            <span *ngFor="let rol of rowData[col.field]">{{rol.nombre}}<br/></span>
+                        </ng-template>
                     </div>
                     <ng-template #columnEdit>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2 edit" (click)="find(rowData.id)"></button>
@@ -53,18 +58,45 @@
     <div class="dialog-form">
     <form [formGroup]="userForm" (ngSubmit)="update()" method="post" >
         <input type="hidden" formControlName="id" />
-        <input type="hidden" formControlName="nombre" />
+        <input type="hidden" formControlName="fechaAlta" />
+        <input type="hidden" formControlName="fechaDesactivacion" />
+        <input type="hidden" formControlName="activo" />
         <div class="p-input-filled" >
             <table>
                 <tr>
                     <td><label for="nombre">Nombre</label></td>
-                    <td>{{configForm.get('nombre').value}}</td>
+                    <td colspan="3"><input type="text" id="nombre" pInputText formControlName="nombre" size="50" /></td>
+                </tr>
+
+                <tr>
+                    <td><label for="username">Username</label></td>
+                    <td colspan="3"><input type="text" id="username" pInputText formControlName="username" size="50" /></td>
+                </tr>
+                
+                <tr>
+                    <td><label for="roles">Roles (*)</label></td> 
+                    <td maxwidth="90%">
+                        <p-multiSelect [options]="listRoles" formControlName="roles" showClear="true" 
+                            optionValue="id" optionLabel="nombre" appendTo="body" lazy="true"
+                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel]="'{0} roles seleccionados'">
+                            
+                        </p-multiSelect>
+                    </td>
+
+                    <td><label for="activo">Activo</label></td> 
+                    <td>
+                        <span *ngIf="userForm != null && userForm.get('activo').value == true; else tdNo">Si</span>
+                        <ng-template #tdNo>
+                            <span>No</span>
+                        </ng-template>
+                    </td>
                 </tr>
                 
                 <tr>
                     <td><label for="email">Email (*)</label></td> 
-                    <td><input type="text" id="email" pInputText formControlName="email" size="50" /></td>
+                    <td colspan="3"><input type="text" id="email" pInputText formControlName="email" /></td>
                 </tr>
+
             </table>
         </div>
 
@@ -78,4 +110,3 @@
 </div>
 
 </p-dialog>
-

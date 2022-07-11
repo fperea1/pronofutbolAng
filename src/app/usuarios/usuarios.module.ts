@@ -11,6 +11,7 @@ import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 
@@ -28,7 +29,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableModule,
     BrowserAnimationsModule,
     InputTextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectModule
   ],
   providers: [
     UsuariosService

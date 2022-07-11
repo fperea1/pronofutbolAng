@@ -21,6 +21,11 @@ export class UsuariosService {
     
   }
 
+  findByAllRoles(): Observable <any> {
+  
+    return this.http.get<any>('roles/findAll');
+  }
+
   findById(id: number): Observable <Usuario> {
   
     const params = id ? { params: new HttpParams().set('id', id) } : {};

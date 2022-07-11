@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from './usuario';
+import { Rol } from './rol';
 import { UsuariosService } from './usuarios.service';
 import { BreadcrumbService } from '../shared/menu/breadcrumb.service';
 import { LazyLoadEvent } from 'primeng/api';
@@ -25,6 +26,8 @@ export class UsuariosComponent implements OnInit {
   userForm: FormGroup;
 
   registros: Usuario[];
+
+  listRoles: Rol[];
 
   cols: any[];
 
@@ -52,8 +55,8 @@ export class UsuariosComponent implements OnInit {
       { field: 'nombre', header: 'Nombre' },
       { field: 'username', header: 'Username' },
       { field: 'email', header: 'Email' },
-      { field: 'fechaAlta', header: 'Fecha de Alta' },
-      { field: 'fechaDesactivacion', header: 'Fecha de Baja' },
+      { field: 'fechaAlta', header: 'Fecha de Alta', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
+      { field: 'fechaDesactivacion', header: 'Fecha de Baja', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
       { field: 'activo', header: 'Activo' },
       { field: 'roles', header: 'Roles' },
       { header: '', width: '10%' }
@@ -64,8 +67,10 @@ export class UsuariosComponent implements OnInit {
       'nombre': ['', [Validators.required]],
       'username': ['', [Validators.required]],
       'email': ['', [Validators.required]],
+      'fechaAlta': ['', []],
+      'fechaDesactivacion': ['', []],
       'activo': ['', []],
-      'roles': ['', [Validators.required]]
+      'roles': ['', []]
     });
 
   }
@@ -120,20 +125,43 @@ export class UsuariosComponent implements OnInit {
   }
 
   find(id: number) {
+    
+    this.usuariosService.findByAllRoles().subscribe({
+      next: this.setAllRoles.bind(this)
+    });
+
     this.usuariosService.findById(id).subscribe({
-      next: this.cargarUsuario.bind(this)
+      next: this.setUser.bind(this)
     });
   }
 
-  cargarUsuario(usuario: Usuario) {
+  setAllRoles(res: any) {
+    this.listRoles = res.list;
+  }
+
+  setUser(usuario: Usuario) {
+    let ids: number[] = [];
+    for (let r of usuario.roles){
+      ids.push(r.id);
+    } 
     this.userForm.setValue(usuario);
+    this.userForm.get('roles').setValue(ids);
     this.display = true;
   }
 
   update(): void  {
+      let roles: Rol[] = []
+      for (let r of this.userForm.get('roles').value){
+        let rol: Rol = {
+          id: r,
+          nombre: ''
+        };
+        roles.push(rol);
+      } 
+      this.userForm.get('roles').setValue(roles);
       this.usuariosService.update(this.userForm.value).subscribe({
-      next: this.handleSucces.bind(this)
-    });
+        next: this.handleSucces.bind(this)
+      }); 
   }
 
   handleSucces(data: any): void {
