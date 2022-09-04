@@ -1,13 +1,16 @@
 <div class="custom-footer">
 
 <span class="contacto">
-    <i class="pi pi-envelope" aria-hidden="true" (click)="showDialog()" title="Contacto"></i>
+    <div *ngIf="isAuth">
+        <i class="pi pi-key" aria-hidden="true" (click)="showDialogPassword()" title="Cambiar Contraseña"></i>
+    </div>
+    <i class="pi pi-envelope" aria-hidden="true" (click)="showDialogContacto()" title="Contacto"></i>
 </span>
 
 
 </div>
 
-<p-dialog [(visible)]="display" >
+<p-dialog [(visible)]="displayContacto" >
 
     <p-header >
             Contacto con el administrador
@@ -24,6 +27,34 @@
 
             <button type="submit" [disabled]="!contactForm.valid" label="Enviar" 
                 [class.btn-disabled]="!contactForm.valid" [class.tam50]="contactForm.valid">Enviar</button>
+
+            <div class="centrado">(*) Campos obligatorios</div>
+    <p-footer></p-footer>
+
+    </form>
+</div>
+
+</p-dialog>
+
+<p-dialog [(visible)]="displayPassword" >
+
+    <p-header >
+            Cambiar Contraseña
+    </p-header>
+    <div class="dialog-form">
+    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
+        
+        <div class="p-input-filled" >
+            <span><input type="text" pInputText formControlName="oldPassword" size="100" placeholder="Password Anterior (*)"/></span>
+
+            <span><input type="text" pInputText formControlName="newPassword" size="100" placeholder="Nueva Password (*)"/></span>
+
+            <span><input type="text" pInputText formControlName="newPassword2" size="100" placeholder="Confirmar Password (*)"/></span>
+            
+        </div>
+
+            <button type="submit" [disabled]="!passwordForm.valid" label="Enviar" 
+                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid">Enviar</button>
 
             <div class="centrado">(*) Campos obligatorios</div>
     <p-footer></p-footer>

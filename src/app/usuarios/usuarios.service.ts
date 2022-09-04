@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { Usuario } from './usuario';
+import { CambioPassword } from '../shared/interfaces/cambio-password';
 
 @Injectable()
 export class UsuariosService {
@@ -21,7 +22,7 @@ export class UsuariosService {
     
   }
 
-  findByAllRoles(): Observable <any> {
+  findAllRoles(): Observable <any> {
   
     return this.http.get<any>('roles/findAll');
   }
@@ -33,6 +34,27 @@ export class UsuariosService {
   }
 
   update(usuario: Usuario) {
-    return this.http.put('usuarios/update', usuario, {responseType: 'text'});
+    if (usuario.id == null) {
+      return this.http.post('usuarios/save', usuario, {responseType: 'text'});
+    } else {
+      return this.http.put('usuarios/update', usuario, {responseType: 'text'});
+    }
   }
+
+  activar(id: number) {
+  
+    //const params = id ? { params: new HttpParams().set('id', id) } : {};
+    return this.http.put('usuarios/activate', id, {responseType: 'text'});
+  }
+
+  desactivar(id: number) {
+  
+    //const params = id ? { params: new HttpParams().set('id', id) } : {};
+    return this.http.put('usuarios/deactivate', id, {responseType: 'text'});
+  }
+
+  changePassword(pass: CambioPassword) {
+    return this.http.put('usuarios/cambioPasswordAdmin', pass, {responseType: 'text'});
+  }
+
 }

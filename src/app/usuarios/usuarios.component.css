@@ -31,13 +31,24 @@
     background-color: #495057;
 }
 
-.p-button.p-button-icon-only.edit {
-    background-color: #f3d343;
+.p-button.p-button-icon-only.edit:hover {
+    background-color: #e9c111;
     color: white;
 }
 
-.p-button.p-button-icon-only.edit:hover {
-    background-color: #e9c111;
+.p-button.p-button-icon-only.change:hover {
+    background-color: #5245cc;
+    color: white;
+}
+
+.p-button.p-button-icon-only.activar:hover {
+    background-color: #22a558;
+    color: white;
+}
+
+.p-button.p-button-icon-only.desactivar:hover {
+    background-color: #e41414;
+    color: white;
 }
 
 :host .p-dialog {
@@ -57,4 +68,8 @@
 
 .p-multiselect panel {
     z-index: 999;
+}
+
+:host ::ng-deep .p-button {
+    margin-right: .5rem;
 }

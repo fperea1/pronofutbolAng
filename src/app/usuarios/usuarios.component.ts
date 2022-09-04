@@ -23,7 +23,11 @@ export class UsuariosComponent implements OnInit {
 
   display: boolean = false;
 
+  displayPassword: boolean = false;
+
   userForm: FormGroup;
+
+  passwordForm: FormGroup;
 
   registros: Usuario[];
 
@@ -33,15 +37,15 @@ export class UsuariosComponent implements OnInit {
 
   loading: boolean;
 
-  first: number;
+  first: number = 0;
 
-  last: number;
+  last: number = 7;
 
-  totalRecords: number;
+  totalRecords: number = 0;
 
   filtro: string;
 
-  filtroTablaInicial= '{"first":0,"rows":10,"sortOrder":1,"filters":{},"globalFilter":null}';
+  filtroTablaInicial= '{"first":0,"rows":7,"sortOrder":1,"filters":{},"globalFilter":null}';
 
   constructor(private fb: FormBuilder, private messageService: MessageService, private usuariosService: UsuariosService, private breadcrumbService: BreadcrumbService) { }
 
@@ -66,11 +70,18 @@ export class UsuariosComponent implements OnInit {
       'id': ['', []],
       'nombre': ['', [Validators.required]],
       'username': ['', [Validators.required]],
+      'password': ['', []],
       'email': ['', [Validators.required]],
       'fechaAlta': ['', []],
       'fechaDesactivacion': ['', []],
       'activo': ['', []],
-      'roles': ['', []]
+      'roles': ['', [Validators.required]]
+    });
+
+    this.passwordForm = this.fb.group({
+      'id':'',
+      'newPassword': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+      'newPassword2': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
     });
 
   }
@@ -124,9 +135,19 @@ export class UsuariosComponent implements OnInit {
       return this.registros ? this.first === 0 : true;
   }
 
+  openNew() {
+
+    this.usuariosService.findAllRoles().subscribe({
+      next: this.setAllRoles.bind(this)
+    });
+    this.userForm.reset();
+    this.userForm.get('activo').setValue(true);
+    this.display = true;
+  }
+
   find(id: number) {
     
-    this.usuariosService.findByAllRoles().subscribe({
+    this.usuariosService.findAllRoles().subscribe({
       next: this.setAllRoles.bind(this)
     });
 
@@ -140,6 +161,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   setUser(usuario: Usuario) {
+    usuario.password = null;
     let ids: number[] = [];
     for (let r of usuario.roles){
       ids.push(r.id);
@@ -174,4 +196,34 @@ export class UsuariosComponent implements OnInit {
     }, 1000);
   }
 
+  activar(id: number) {
+
+    this.usuariosService.activar(id).subscribe({
+      next: this.handleSucces.bind(this)
+    });
+  }
+
+  desactivar(id: number) {
+
+    this.usuariosService.desactivar(id).subscribe({
+      next: this.handleSucces.bind(this)
+    });
+  }
+
+  showDialogPassword(id: number) {
+    this.displayPassword = true;
+    this.passwordForm.reset();
+    this.passwordForm.get('id').setValue(id);
+  }
+
+  changePassword(): void {
+    this.usuariosService.changePassword(this.passwordForm.value).subscribe({
+      next: this.handleSuccesPassword.bind(this)
+    });
+  }
+
+  handleSuccesPassword(data: any): void {
+    this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
+    this.displayPassword = false;
+  }
 }

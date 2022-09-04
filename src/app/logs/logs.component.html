@@ -2,10 +2,10 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple icon="pi pi-sync" class="p-button-success mr-2" 
+            <button type="button" pButton pRipple label="Clear" icon="pi pi-sync" class="p-button-secondary" 
                 pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2 excel" 
-                pTooltip="Exportar" tooltipPosition="bottom" (click)="exportar()"></button>
+            <button type="button" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-success mr-2"
+                (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"

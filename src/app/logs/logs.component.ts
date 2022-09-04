@@ -22,15 +22,15 @@ export class LogsComponent implements OnInit {
 
   loading: boolean;
 
-  first: number;
+  first: number = 0;
 
-  last: number;
+  last: number = 7;
 
-  totalRecords: number;
+  totalRecords: number = 0;
 
   filtro: string;
 
-  filtroTablaInicial= '{"first":0,"rows":10,"sortOrder":1,"filters":{},"globalFilter":null}';
+  filtroTablaInicial= '{"first":0,"rows":7,"sortOrder":1,"filters":{},"globalFilter":null}';
 
   constructor(private logService: LogService, private breadcrumbService: BreadcrumbService) { }
 

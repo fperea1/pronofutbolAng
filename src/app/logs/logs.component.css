@@ -31,3 +31,6 @@
     background-color: #495057;
 }
 
+:host ::ng-deep .p-button {
+    margin-right: .5rem;
+}

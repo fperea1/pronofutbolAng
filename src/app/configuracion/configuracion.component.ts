@@ -30,15 +30,15 @@ export class ConfiguracionComponent implements OnInit {
 
   loading: boolean;
 
-  first: number;
+  first: number = 0;
 
-  last: number;
+  last: number = 7;
 
-  totalRecords: number;
+  totalRecords: number = 0;
 
   filtro: string;
 
-  filtroTablaInicial= '{"first":0,"rows":10,"sortOrder":1,"filters":{},"globalFilter":null}';
+  filtroTablaInicial= '{"first":0,"rows":7,"sortOrder":1,"filters":{},"globalFilter":null}';
 
   constructor(private fb: FormBuilder, private messageService: MessageService, private configuracionService: ConfiguracionService, private breadcrumbService: BreadcrumbService) { }
 
@@ -57,7 +57,7 @@ export class ConfiguracionComponent implements OnInit {
     this.configForm = this.fb.group({
       'id': ['', []],
       'nombre': ['', []],
-      'valor': ['', [Validators.required]],
+      'valor': ['', [Validators.required, Validators.maxLength(500)]],
     });
   }
   

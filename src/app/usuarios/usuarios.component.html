@@ -2,10 +2,12 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple icon="pi pi-sync" class="p-button-success mr-2" 
+            <button type="button" pButton pRipple label="Nuevo" icon="pi pi-plus" 
+                (click)="openNew()"></button>
+            <button type="button" pButton pRipple label="Clear" icon="pi pi-sync" class="p-button-secondary" 
                 pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
-            <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2 excel" 
-                pTooltip="Exportar" tooltipPosition="bottom" (click)="exportar()"></button>
+            <button type="button" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-success mr-2"
+                (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
@@ -42,7 +44,20 @@
                         </ng-template>
                     </div>
                     <ng-template #columnEdit>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2 edit" (click)="find(rowData.id)"></button>
+                        <button pButton pRipple title="Editar" icon="pi pi-user-edit" 
+                            class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="find(rowData.id)"></button>
+                        
+                        <button pButton pRipple title="Cambiar Contraseña" icon="pi pi-key" 
+                            class="p-button-rounded p-button-info p-button-outlined mr-2 change" (click)="showDialogPassword(rowData.id)"></button>
+
+                        <button *ngIf="rowData.activo == true; else botonActivar" pButton pRipple title="Desactivar" 
+                            icon="pi pi-lock" (click)="desactivar(rowData.id)" 
+                            class="p-button-rounded p-button-danger p-button-outlined mr-2 desactivar" ></button>
+                           
+                        <ng-template #botonActivar>
+                            <button pButton pRipple title="Activar" icon="pi pi-lock-open" (click)="activar(rowData.id)"
+                                class="p-button-rounded p-button-success p-button-outlined mr-2 activar" ></button>
+                        </ng-template>
                     </ng-template>
                 </td>
             </tr>
@@ -64,13 +79,18 @@
         <div class="p-input-filled" >
             <table>
                 <tr>
-                    <td><label for="nombre">Nombre</label></td>
+                    <td><label for="nombre">Nombre (*)</label></td>
                     <td colspan="3"><input type="text" id="nombre" pInputText formControlName="nombre" size="50" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="username">Username</label></td>
+                    <td><label for="username">Username (*)</label></td>
                     <td colspan="3"><input type="text" id="username" pInputText formControlName="username" size="50" /></td>
+                </tr>
+
+                <tr *ngIf="userForm.get('id').value == null">
+                    <td><label for="password">Password (*)</label></td>
+                    <td colspan="3"><input type="text" id="password" pInputText formControlName="password" maxsize="100" /></td>
                 </tr>
                 
                 <tr>
@@ -110,3 +130,27 @@
 </div>
 
 </p-dialog>
+
+<p-dialog [(visible)]="displayPassword" >
+
+    <p-header >
+            Cambiar Contraseña
+    </p-header>
+    <div class="dialog-form">
+    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
+        <input type="hidden" formControlName="id" />
+        <div class="p-input-filled" >
+            <span><input type="text" pInputText formControlName="newPassword" size="100" placeholder="Nueva Password (*)"/></span>
+
+            <span><input type="text" pInputText formControlName="newPassword2" size="100" placeholder="Confirmar Password (*)"/></span>
+            
+        </div>
+
+            <button type="submit" [disabled]="!passwordForm.valid" label="Enviar" 
+                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid">Enviar</button>
+
+            <div class="centrado">(*) Campos obligatorios</div>
+    <p-footer></p-footer>
+
+    </form>
+</div>
