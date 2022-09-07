@@ -225,5 +225,6 @@ export class UsuariosComponent implements OnInit {
   handleSuccesPassword(data: any): void {
     this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
     this.displayPassword = false;
+    
   }
 }
