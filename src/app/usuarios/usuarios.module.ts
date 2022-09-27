@@ -12,7 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -30,7 +30,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     BrowserAnimationsModule,
     InputTextModule,
     ReactiveFormsModule,
-    MultiSelectModule
+    MultiSelectModule,
+    CalendarModule
+
   ],
   providers: [
     UsuariosService

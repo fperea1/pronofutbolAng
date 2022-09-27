@@ -56,13 +56,13 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     this.cols = [
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'username', header: 'Username' },
-      { field: 'email', header: 'Email' },
+      { field: 'nombre', header: 'Nombre', text: true },
+      { field: 'username', header: 'Username', text: true },
+      { field: 'email', header: 'Email', text: true },
       { field: 'fechaAlta', header: 'Fecha de Alta', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
       { field: 'fechaDesactivacion', header: 'Fecha de Baja', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
-      { field: 'activo', header: 'Activo' },
-      { field: 'roles', header: 'Roles' },
+      { field: 'activo', header: 'Activo',  boolean: true},
+      { field: 'roles', header: 'Roles', lista: true },
       { header: '', width: '10%' }
     ];
 
@@ -82,6 +82,10 @@ export class UsuariosComponent implements OnInit {
       'id':'',
       'newPassword': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
       'newPassword2': ['', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+    });
+
+    this.usuariosService.findAllRoles().subscribe({
+      next: this.setAllRoles.bind(this)
     });
 
   }
@@ -124,7 +128,9 @@ export class UsuariosComponent implements OnInit {
   }
 
   clear(table: Table) {
+    
       table.clear();
+      
   }
 
   isLastPage(): boolean {
