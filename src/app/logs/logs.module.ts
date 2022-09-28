@@ -7,7 +7,7 @@ import { LogsComponent } from './logs.component';
 import { LogsRoutingModule } from './logs-routing.module';
 import { TableModule } from 'primeng/table';
 import { LogService } from './log.service';
-
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { LogService } from './log.service';
     ButtonModule,
     TooltipModule,
     LogsRoutingModule,
-    TableModule
+    TableModule,
+    CalendarModule
   ],
   providers: [
     LogService

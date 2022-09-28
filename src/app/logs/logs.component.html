@@ -21,7 +21,18 @@
             </tr>
             <tr>
                 <th *ngFor="let col of columns">
-                    <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
+                    <div *ngIf="col.data" >
+                        <p-columnFilter type="date" field="{{col.field}}" >
+                          <ng-template pTemplate="filter" >
+                             <p-calendar dateFormat="dd/mm/yy" [showButtonBar]="true" 
+                              [showTime]="true" [showSeconds]="true" hourFormat="24" [readonlyInput]="true">
+                              </p-calendar>
+                          </ng-template>
+                        </p-columnFilter>
+                    </div>
+                    <div *ngIf="col.text" >
+                        <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
+                    </div>
                 </th>
             </tr>
         </ng-template>

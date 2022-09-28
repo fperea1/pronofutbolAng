@@ -74,15 +74,6 @@
     margin-right: .5rem;
 }
 
-
-elemento {
-
-    z-index: 1001;
-    transform-origin: center bottom 0px;
-    top: -168.133px;
-    left: -566.7px;
-
-}
 :host ::ng-deep .p-calendar .p-datepicker {
     min-width: 20%;
 }
@@ -91,7 +82,7 @@ elemento {
 {
     width: 20%;
     position: fixed;
-    margin-top: 10%;
+    margin-top: 15%;
     margin-left: 39%;
 }
 :host ::ng-deep .p-multiselect .p-multiselect-panel{

@@ -86,6 +86,24 @@ button.tam50 {
     cursor: pointer;
   }
 
+  .p-component {
+    font-size: smaller;
+  }
+
+  .p-datepicker .p-timepicker span {
+    font-size: small;
+  }
+
+  .p-datepicker table td > span {
+    font-size: small;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .p-datepicker table {
+    font-size: small;
+  }
+
   .p-dialog {
     width: 40%;
   }

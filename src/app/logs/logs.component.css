@@ -34,3 +34,20 @@
 :host ::ng-deep .p-button {
     margin-right: .5rem;
 }
+
+:host ::ng-deep .p-datatable-scrollable .p-datatable-wrapper {
+    overflow: visible;
+  }
+
+
+:host ::ng-deep .p-calendar .p-datepicker {
+    min-width: 20%;
+}
+
+:host ::ng-deep .p-datepicker
+{
+    width: 20%;
+    position: fixed;
+    margin-top: 15%;
+    margin-left: 70%;
+}
