@@ -30,8 +30,8 @@
                         <div *ngIf="col.data" >
 
                               <p-columnFilter type="date" field="{{col.field}}" >
-                                <ng-template pTemplate="filter" >
-                                   <p-calendar dateFormat="dd/mm/yy" [showButtonBar]="true"
+                                <ng-template pTemplate="filter" let-filter="filterCallback">
+                                   <p-calendar dateFormat="dd/mm/yy" [showButtonBar]="true" (onSelect)="filter($event)"
                                     [showTime]="true" [showSeconds]="true" hourFormat="24" [readonlyInput]="true">
                                     </p-calendar>
                                 </ng-template>
@@ -41,10 +41,10 @@
                             <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
                         </div>
                         <div *ngIf="col.boolean" >
-                            <p-columnFilter type="boolean" field="{{col.field}}" matchMode="in" ></p-columnFilter>
+                            <p-columnFilter type="boolean" field="{{col.field}}" matchMode="boolean" ></p-columnFilter>
                         </div>
                         <div *ngIf="col.lista" >
-                            <p-columnFilter field="{{col.field}}" matchMode="in" [showMenu]="false">
+                            <p-columnFilter field="{{col.field}}" matchMode="select" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                     <p-multiSelect [ngModel]="value" [options]="listRoles" (onChange)="filter($event.value)" optionLabel="nombre">
                                         <ng-template let-option pTemplate="item">
