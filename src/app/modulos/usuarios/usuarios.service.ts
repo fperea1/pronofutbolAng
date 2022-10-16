@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { Usuario } from './usuario';
-import { CambioPassword } from '../shared/interfaces/cambio-password';
+import { CambioPassword } from '../../shared/interfaces/cambio-password';
 
 @Injectable()
 export class UsuariosService {

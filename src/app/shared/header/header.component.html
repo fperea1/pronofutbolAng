@@ -1,5 +1,14 @@
 <div class="iconApp">ICONO APP</div>
 <div class="nombreApp">NOMBRE APP</div>
+<div class="{{classFlagSelected}}">
+    <div>
+        <img src="assets/images/flags/{{selectedCountry.code}}.png" title="{{selectedCountry.name}}" 
+            (click)="showFlagsDiv()" class="seleccionada"/>
+    </div>
+            
+    
+</div>
+
 
 <p-toast position="top-center" key="errorMensaje" (onClose)="clear()" >
     <ng-template let-message pTemplate="message">
@@ -40,3 +49,12 @@
         </div>
     </ng-template>
 </p-toast>
+
+<div *ngIf="showFlags" class="setFlags" >
+        
+    <div *ngFor="let country of countries" >
+        <img src="assets/images/flags/{{country.code}}.png" (click)="changeFlag(country.code)"
+            title="{{country.name}}"/>
+    </div>
+
+</div>

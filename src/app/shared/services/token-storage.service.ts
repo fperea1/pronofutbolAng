@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
+const LANG_KEY = 'lang';
 
 @Injectable()
 export class TokenStorageService {
@@ -9,6 +10,7 @@ export class TokenStorageService {
 
   signOut() {
     sessionStorage.removeItem(TOKEN_KEY);
+    //sessionStorage.removeItem(LANG_KEY);
     sessionStorage.clear();
   }
 

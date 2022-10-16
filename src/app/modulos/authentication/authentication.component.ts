@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../shared/services/authentication.service';
+import { AuthenticationService } from '../../shared/services/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { TokenStorageService } from '../shared/services/token-storage.service';
+import { TokenStorageService } from '../../shared/services/token-storage.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AuthorizationService } from '../shared/services/authorization.service';
+import { AuthorizationService } from '../../shared/services/authorization.service';
 
 @Component({
   selector: 'app-authentication',
