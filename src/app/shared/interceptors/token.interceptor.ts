@@ -24,6 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
       if (this.tokenStorageService.getToken() != null) {
           request = request.clone({ headers: request.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.tokenStorageService.getToken())});
       }
+      
       return next.handle(request);
   }
 }

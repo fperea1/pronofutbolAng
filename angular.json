@@ -4,11 +4,14 @@
   "newProjectRoot": "projects",
   "projects": {
     "baseRest": {
-      "projectType": "application",
+      "projectType": "application", 
       "schematics": {
         "@schematics/angular:application": {
           "strict": true
         }
+      },
+      "i18n": {
+        "sourceLocale": "es"
       },
       "root": "",
       "sourceRoot": "src",

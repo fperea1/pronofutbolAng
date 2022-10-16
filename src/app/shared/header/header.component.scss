@@ -15,3 +15,26 @@
 .nombreApp {
   width: 80%;
 }
+
+.flagSelected {
+  margin-right: 5%;
+  cursor: pointer;
+  width: 40px;
+}
+
+.flagSelected2 {
+  margin-right: -2.7%;
+  cursor: pointer;
+  width: 40px;
+}
+
+.setFlags {
+  margin-right: 5%;
+  margin-top: 185px;
+  background-color: rgb(235, 241, 239);
+  height: 135px;
+  width: 40px;
+  cursor: pointer;
+  padding-top: 2px;
+  z-index: 1001;
+}

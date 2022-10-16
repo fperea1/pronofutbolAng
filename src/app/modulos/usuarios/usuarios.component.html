@@ -124,7 +124,7 @@
                 <tr>
                     <td><label for="roles">Roles (*)</label></td> 
                     <td maxwidth="90%">
-                        <p-multiSelect [options]="listRoles" formControlName="roles" showClear="true" 
+                        <p-multiSelect [options]="listRoles" formControlName="roles" [showClear]="true" 
                             optionValue="id" optionLabel="nombre" appendTo="body" lazy="true"
                             [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel]="'{0} roles seleccionados'">
                             
