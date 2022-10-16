@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Log } from './log';
 import { LogService } from './log.service';
-import { BreadcrumbService } from '../shared/menu/breadcrumb.service';
+import { BreadcrumbService } from '../../shared/menu/breadcrumb.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { saveAs } from 'file-saver';

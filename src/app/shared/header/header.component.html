@@ -1,5 +1,22 @@
 <div class="iconApp">ICONO APP</div>
 <div class="nombreApp">NOMBRE APP</div>
+<div class="flagsi18n">
+    <p-dropdown [options]="countries" >
+        
+        <ng-template pTemplate="selectedItem">
+            <div class="country-item country-item-value" *ngIf="selectedCountry">
+                <img src="assets/images/flags/flag_placeholder.png" [class]="'flag flag-' + selectedCountry.code.toLowerCase()" />
+                <div>{{selectedCountry.name}}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="country-item">
+                <img src="assets/images/flags/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
+                <div>{{country.name}}</div>
+            </div>
+        </ng-template>
+    </p-dropdown>
+</div>
 
 <p-toast position="top-center" key="errorMensaje" (onClose)="clear()" >
     <ng-template let-message pTemplate="message">

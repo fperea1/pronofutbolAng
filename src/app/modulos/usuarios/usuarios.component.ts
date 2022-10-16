@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from './usuario';
 import { Rol } from './rol';
 import { UsuariosService } from './usuarios.service';
-import { BreadcrumbService } from '../shared/menu/breadcrumb.service';
+import { BreadcrumbService } from '../../shared/menu/breadcrumb.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { saveAs } from 'file-saver';

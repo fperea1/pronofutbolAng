@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { MessageService } from 'primeng/api';
   ],
   imports: [
     CommonModule,
-    ToastModule
+    ToastModule,
+    DropdownModule
   ],
   exports: [
     HeaderComponent
