@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { DialogModule } from 'primeng/dialog';
 import { LocaleStorageService } from '../services/locale-storage.service';
 
 @NgModule({
@@ -12,8 +11,7 @@ import { LocaleStorageService } from '../services/locale-storage.service';
   ],
   imports: [
     CommonModule,
-    ToastModule,
-    DialogModule
+    ToastModule
   ],
   exports: [
     HeaderComponent

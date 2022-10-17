@@ -1,27 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Country } from './country';
-import { LocaleStorageService } from '../services/locale-storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-
 export class HeaderComponent implements OnInit {
-  
-  selectedCountry: Country;
 
-  countries: Country[];
-
-  showFlags: boolean;
-
-  classFlagSelected: string;
-
-  constructor(private messageService: MessageService, private localeStorageService: LocaleStorageService) {
-    
-  }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.countries = [
