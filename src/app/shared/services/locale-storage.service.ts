@@ -13,8 +13,7 @@ export class LocaleStorageService {
   }
 
   public getLang(): string {
-    return sessionStorage.getItem(LANG_KEY) == null 
-            || sessionStorage.getItem(LANG_KEY) == '' ? 'es_ES' : sessionStorage.getItem(LANG_KEY);
+    return sessionStorage.getItem(LANG_KEY);
   }
 
 }

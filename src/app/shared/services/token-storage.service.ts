@@ -10,8 +10,9 @@ export class TokenStorageService {
 
   signOut() {
     sessionStorage.removeItem(TOKEN_KEY);
-    //sessionStorage.removeItem(LANG_KEY);
+    var lang = sessionStorage.getItem(LANG_KEY);
     sessionStorage.clear();
+    sessionStorage.setItem(LANG_KEY, lang);
   }
 
   public saveToken(token: string) {
