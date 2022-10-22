@@ -53,14 +53,21 @@ export class HeaderComponent implements OnInit {
   }
 
   getContextPath() {
-    var context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2)); 
+    var context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
     return window.location.protocol+"//"+ window.location.host + context + "/";
   }
 
-  getLanguage() {
-    var lang = (this.languageStorageService.getLang() != null) ?
-        this.languageStorageService.getLang().split('_')[0] : null;
-    if (lang == null || lang == '') {
+  getLanguage(): string {
+
+    var context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+
+    var lang = '';
+    if (context.length > 1) {
+      lang = context.substring(1,3);
+    } else if (this.languageStorageService.getLang() != null) {
+      lang = (this.languageStorageService.getLang() != null) ?
+          this.languageStorageService.getLang().split('_')[0] : null;
+    } else {
       lang = navigator.language.split('-')[0];
     }
     return lang; 
@@ -71,17 +78,10 @@ export class HeaderComponent implements OnInit {
       window.location.href = this.getContextPath() + this.getLanguage();
     }
   };
-  
 
   setSelectedCountry(code:string) {
-   
-    var lang = (this.languageStorageService.getLang() != null) ?
-      this.languageStorageService.getLang().split('_')[0] : null;
-   // alert('GG'+lang+'GG');
-    if (lang == null || lang == '') {
-      lang = code == null ? this.getLanguage() : code;
-    }
-    switch (lang) {
+
+    switch (this.getLanguage()) {
       case "es":
         this.selectedCountry = {name: 'Español', code: 'es'};
         break;
@@ -117,11 +117,11 @@ export class HeaderComponent implements OnInit {
   }
 
   changeFlag(code: string) {
-    //this.setSelectedCountry(code);
     this.showFlags = !this.showFlags;
     this.classFlagSelected = 'flagSelected';
     this.languageStorageService.saveLang(this.getLocale(code));
-    window.location.href = this.getContextPath()+code;
+    var url = window.location.protocol + "//" + window.location.host + '/' + code
+    window.location.href = url;
   }
   
   getLocale(code: string): string {

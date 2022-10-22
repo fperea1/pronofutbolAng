@@ -19,8 +19,8 @@
           "de": {
             "translation": "src/locale/messages.de.xlf"
           },
-          "cn": {
-            "translation": "src/locale/messages.cn.xlf"
+          "zh": {
+            "translation": "src/locale/messages.zh.xlf"
           },
           "it": {
             "translation": "src/locale/messages.it.xlf"
@@ -65,8 +65,8 @@
             "en": {
               "localize": ["en"]
             },
-            "cn": {
-              "localize": ["cn"]
+            "zh": {
+              "localize": ["zh"]
             },
             "es": {
               "localize": ["es"]
@@ -118,8 +118,8 @@
             "de": {
               "browserTarget": "baseRest:build:development,de"
             },
-            "cn": {
-              "browserTarget": "baseRest:build:development,cn"
+            "zh": {
+              "browserTarget": "baseRest:build:development,zh"
             },
             "it": {
               "browserTarget": "baseRest:build:development,it"
