@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LocaleStorageService } from './locale-storage.service';
+import { LanguageStorageService } from './language-storage.service';
 
 describe('LocaleStorageService', () => {
-  let service: LocaleStorageService;
+  let service: LanguageStorageService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LocaleStorageService);
+    service = TestBed.inject(LanguageStorageService);
   });
 
   it('should be created', () => {

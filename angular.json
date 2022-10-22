@@ -11,7 +11,24 @@
         }
       },
       "i18n": {
-        "sourceLocale": "es"
+        "sourceLocale": "es",
+        "locales": {
+          "fr": {
+            "translation": "src/locale/messages.fr.xlf"
+          },
+          "de": {
+            "translation": "src/locale/messages.de.xlf"
+          },
+          "cn": {
+            "translation": "src/locale/messages.cn.xlf"
+          },
+          "it": {
+            "translation": "src/locale/messages.it.xlf"
+          },
+          "en": {
+            "translation": "src/locale/messages.en.xlf"
+          }
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -20,6 +37,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
             "outputPath": "dist/base-rest",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -35,6 +53,24 @@
             "scripts": []
           },
           "configurations": {
+            "fr": {
+              "localize": ["fr"]
+            },
+            "de": {
+              "localize": ["de"]
+            },
+            "it": {
+              "localize": ["it"]
+            },
+            "en": {
+              "localize": ["en"]
+            },
+            "cn": {
+              "localize": ["cn"]
+            },
+            "es": {
+              "localize": ["es"]
+            },
             "production": {
               "budgets": [
                 {
@@ -75,6 +111,24 @@
             },
             "development": {
               "browserTarget": "baseRest:build:development"
+            },
+            "fr": {
+              "browserTarget": "baseRest:build:development,fr"
+            },
+            "de": {
+              "browserTarget": "baseRest:build:development,de"
+            },
+            "cn": {
+              "browserTarget": "baseRest:build:development,cn"
+            },
+            "it": {
+              "browserTarget": "baseRest:build:development,it"
+            },
+            "en": {
+              "browserTarget": "baseRest:build:development,en"
+            },
+            "es": {
+              "browserTarget": "baseRest:build:development,es"
             }
           },
           "defaultConfiguration": "development"

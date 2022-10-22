@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LocaleInterceptor } from './locale.interceptor';
+import { LanguageInterceptor } from './language.interceptor';
 
-describe('LocaleInterceptor', () => {
+describe('LanguageInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      LocaleInterceptor
+      LanguageInterceptor
       ]
   }));
 
   it('should be created', () => {
-    const interceptor: LocaleInterceptor = TestBed.inject(LocaleInterceptor);
+    const interceptor: LanguageInterceptor = TestBed.inject(LanguageInterceptor);
     expect(interceptor).toBeTruthy();
   });
 });

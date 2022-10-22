@@ -17,7 +17,7 @@ import { MessageService } from 'primeng/api';
 })
 export class UsuariosComponent implements OnInit {
 
-  titulo: String = 'Usuarios';
+  titulo: String = $localize `Usuarios`;
 
   usuario: Usuario;
 
@@ -51,7 +51,7 @@ export class UsuariosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.breadcrumbService.cambioBreadcrumb('Usuarios'); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Usuarios`); 
     
     this.loading = true;
 

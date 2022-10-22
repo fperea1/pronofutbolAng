@@ -7,6 +7,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
+<script>
+/**
+function getContextPath() {
+  var context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2)); 
+  return window.location.protocol+"//"+ window.location.host + context + "/";
+}
+function getLanguage() {
+  return (navigator.language || navigator.userLanguage).substr(0,2); 
+}
+
+function redirect() {
+  if (window.location.pathname.length == 1) {
+    window.location.href = getContextPath() + getLanguage();
+  }
+};
+
+redirect();
+**/
+</script>
 <body>
   <app-root></app-root>
 </body>

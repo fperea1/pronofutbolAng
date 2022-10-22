@@ -14,7 +14,7 @@ import { formatDate } from '@angular/common';
 })
 export class LogsComponent implements OnInit {
 
-  titulo: String = 'Logs';
+  titulo: String = $localize `Logs`;
 
   registros: Log[];
 
@@ -36,7 +36,7 @@ export class LogsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.breadcrumbService.cambioBreadcrumb('Logs'); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Logs`); 
     
     this.loading = true;
 

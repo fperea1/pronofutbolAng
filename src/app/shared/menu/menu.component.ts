@@ -28,31 +28,31 @@ export class MenuComponent implements OnInit {
     
       this.items = [
         {
-          label: 'Informes',
+          label: $localize `Informes`,
           visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION', 'CONSULTA']),
           items: [
-              {label: 'Web', icon: 'pi pi-cloud',
+              {label: $localize `Web`, icon: 'pi pi-cloud',
                   routerLink: ['/reportWeb'], routerLinkActiveOptions: 'active', 
                   visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-              {label: 'Excel', icon: 'pi pi-file-excel',
+              {label: $localize `Excel`, icon: 'pi pi-file-excel',
                   routerLink: ['/reportExcel'], routerLinkActiveOptions: 'active', 
                   visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-              {label: 'Gráficos', icon: 'pi pi-chart-line',
+              {label: $localize `Gráficos`, icon: 'pi pi-chart-line',
                   routerLink: ['/graficos'], routerLinkActiveOptions: 'active', 
                   visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION'])}
           ]
           },
           {
-            label: 'Administración',
+            label: $localize `Administración`,
             visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION']),
             items: [
-                {label: 'Usuarios', icon: 'pi pi-users',
+                {label: $localize `Usuarios`, icon: 'pi pi-users',
                     routerLink: ['/usuarios'], routerLinkActiveOptions: 'active', 
                     visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-                {label: 'Configuración', icon: 'pi pi-cog',
+                {label: $localize `Configuración`, icon: 'pi pi-cog',
                     routerLink: ['/configuracion'], routerLinkActiveOptions: 'active', 
                     visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-                {label: 'Logs', icon: 'pi pi-book',
+                {label: $localize `Logs`, icon: 'pi pi-book',
                     routerLink: ['/logs'], routerLinkActiveOptions: 'active', 
                     visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])}
             ]
@@ -63,7 +63,7 @@ export class MenuComponent implements OnInit {
     });
     this.breadcrumbService.change.subscribe((data: string) => { 
       this.itemsBreadcrumb = [
-        {label: ' - Home', icon: 'pi pi-home'},
+        {label: $localize ` - Home`, icon: 'pi pi-home'},
         {label: data}
       ];
     });

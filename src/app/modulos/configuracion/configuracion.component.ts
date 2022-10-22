@@ -16,7 +16,7 @@ import { MessageService } from 'primeng/api';
 })
 export class ConfiguracionComponent implements OnInit {
 
-  titulo: String = 'Configuración';
+  titulo: String = $localize `Configuración`;
 
   configuracion: Configuracion;
 
@@ -44,7 +44,7 @@ export class ConfiguracionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.breadcrumbService.cambioBreadcrumb('Configuración'); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Configuración`); 
     
     this.loading = true;
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Country } from './country';
-import { LocaleStorageService } from '../services/locale-storage.service';
+import { LanguageStorageService } from '../services/language-storage.service';
+import { AuthorizationService } from '../services/authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -19,14 +20,20 @@ export class HeaderComponent implements OnInit {
 
   classFlagSelected: string;
 
-  constructor(private messageService: MessageService, private localeStorageService: LocaleStorageService) {
+  isAuth: boolean = false;
+
+  constructor(private messageService: MessageService, private authorizationService: AuthorizationService,
+    private languageStorageService: LanguageStorageService) {
     
   }
 
   ngOnInit(): void {
+    
+    this.redirect();
+  
     this.countries = [
-      {name: '中國人', code: 'cn'},
-      {name: 'English', code: 'gb'},
+      {name: '中國人', code: 'zh'},
+      {name: 'English', code: 'en'},
       {name: 'Français', code: 'fr'},
       {name: 'Deutsch', code: 'de'},
       {name: 'Italiano', code: 'it'},
@@ -38,20 +45,53 @@ export class HeaderComponent implements OnInit {
     this.showFlags = false;
 
     this.classFlagSelected = 'flagSelected';
+
+    this.authorizationService.change.subscribe((data:boolean) => {
+      this.isAuth = data;
+    });
+
   }
 
+  getContextPath() {
+    var context = window.location.pathname.substring(0, window.location.pathname.indexOf("/",2)); 
+    return window.location.protocol+"//"+ window.location.host + context + "/";
+  }
+
+  getLanguage() {
+    var lang = (this.languageStorageService.getLang() != null) ?
+        this.languageStorageService.getLang().split('_')[0] : null;
+    if (lang == null || lang == '') {
+      lang = navigator.language.split('-')[0];
+    }
+    return lang; 
+  }
+
+  redirect() {
+    if (window.location.pathname.length == 1) {
+      window.location.href = this.getContextPath() + this.getLanguage();
+    }
+  };
+  
+
   setSelectedCountry(code:string) {
-    
-    var lang = code == null ? navigator.language.substring(0,2) : code;
+   
+    var lang = (this.languageStorageService.getLang() != null) ?
+      this.languageStorageService.getLang().split('_')[0] : null;
+   // alert('GG'+lang+'GG');
+    if (lang == null || lang == '') {
+      lang = code == null ? this.getLanguage() : code;
+    }
     switch (lang) {
       case "es":
         this.selectedCountry = {name: 'Español', code: 'es'};
         break;
+      case "en":
       case "gb":
-        this.selectedCountry = {name: 'English', code: 'gb'};
+        this.selectedCountry = {name: 'English', code: 'en'};
         break;
       case "cn": 
-        this.selectedCountry = {name: '中國人', code: 'cn'};
+      case "zh": 
+        this.selectedCountry = {name: '中國人', code: 'zh'};
         break;
       case "fr": 
         this.selectedCountry = {name: 'Français', code: 'fr'};
@@ -77,12 +117,12 @@ export class HeaderComponent implements OnInit {
   }
 
   changeFlag(code: string) {
-    this.setSelectedCountry(code);
+    //this.setSelectedCountry(code);
     this.showFlags = !this.showFlags;
     this.classFlagSelected = 'flagSelected';
-    this.localeStorageService.saveLang(this.getLocale(code));
+    this.languageStorageService.saveLang(this.getLocale(code));
+    window.location.href = this.getContextPath()+code;
   }
-
   
   getLocale(code: string): string {
     var locale = '';
@@ -91,9 +131,11 @@ export class HeaderComponent implements OnInit {
         locale = 'es_ES';
         break;
       case "gb":
+      case "en":
         locale = 'en_GB';
         break;
       case "cn": 
+      case "zh": 
         locale = 'zh_CN';
         break;
       case "fr": 

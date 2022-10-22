@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { LocaleStorageService } from '../services/locale-storage.service';
+import { LanguageStorageService } from '../services/language-storage.service';
+import { AuthorizationService } from '../services/authorization.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LocaleStorageService } from '../services/locale-storage.service';
   ],
   providers: [
     MessageService,
-    LocaleStorageService
+    LanguageStorageService,
+    AuthorizationService
   ]
 })
 export class HeaderModule { }

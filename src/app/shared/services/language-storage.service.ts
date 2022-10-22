@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 const LANG_KEY = 'lang';
 
 @Injectable()
-export class LocaleStorageService {
+export class LanguageStorageService {
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 <div class="iconApp">ICONO APP</div>
 <div class="nombreApp">NOMBRE APP</div>
-<div class="{{classFlagSelected}}">
+<div *ngIf="!isAuth" class="{{classFlagSelected}}">
     <div>
         <img src="assets/images/flags/{{selectedCountry.code}}.png" title="{{selectedCountry.name}}" 
             (click)="showFlagsDiv()" class="seleccionada"/>
@@ -49,10 +49,11 @@
 </p-toast>
 
 <div *ngIf="showFlags" class="setFlags" >
-        
+            
     <div *ngFor="let country of countries" >
-        <img src="assets/images/flags/{{country.code}}.png" (click)="changeFlag(country.code)"
-            title="{{country.name}}"/>
+        <!-- <a href="http://www.baseRest.com/{{country.code}}/" > -->
+            <img src="assets/images/flags/{{country.code}}.png" title="{{country.name}}"
+                (click)="changeFlag(country.code)"/>
+        <!-- </a> -->
     </div>
-
 </div>

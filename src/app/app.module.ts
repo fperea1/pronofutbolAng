@@ -12,7 +12,7 @@ import { FooterModule } from './shared/footer/footer.module';
 
 import { BaseUrlInterceptor } from './shared/interceptors/base-url.interceptor';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
-import { LocaleInterceptor } from './shared/interceptors/locale.interceptor';
+import { LanguageInterceptor } from './shared/interceptors/language.interceptor';
 import { HttpErrorInterceptor } from './shared/interceptors/http-error.interceptor';
 
 @NgModule({
@@ -32,7 +32,7 @@ import { HttpErrorInterceptor } from './shared/interceptors/http-error.intercept
     { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LocaleInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LanguageInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

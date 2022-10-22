@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="es" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <target>Identifiant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/authentication/authentication.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/authentication/authentication.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/authentication/authentication.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9016536884183098576" datatype="html">
+        <source>Usuario</source>
+        <target>Utilisateur</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/authentication/authentication.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <target>Mot de passe</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/authentication/authentication.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6076319951837431770" datatype="html">
+        <source>Configuración</source>
+        <target>Param&egrave;tre</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/configuracion/configuracion.component.ts</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/configuracion/configuracion.component.ts</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4804785061014590286" datatype="html">
+        <source>Logs</source>
+        <target>Journaux</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/logs/logs.component.ts</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/logs/logs.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5359751386135164450" datatype="html">
+        <source>Usuarios</source>
+        <target>Utilisateurs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/usuarios/usuarios.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/modulos/usuarios/usuarios.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7838748802290050050" datatype="html">
+        <source>Informes</source>
+        <target>Rapports</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9167786874272926575" datatype="html">
+        <source>Web</source>
+        <target>La toile</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5323231108109170943" datatype="html">
+        <source>Excel</source>
+        <target>Exceller</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="835164367480259099" datatype="html">
+        <source>Gráficos</source>
+        <target>Graphique</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2874407596643567198" datatype="html">
+        <source>Administración</source>
+        <target>La gestion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5091172343721283466" datatype="html">
+        <source> - Home</source>
+        <target> - D&egrave;but</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
