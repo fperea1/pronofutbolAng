@@ -31,13 +31,9 @@
     background-color: #495057;
 }
 
-.p-button.p-button-icon-only.edit {
-    background-color: #f3d343;
-    color: white;
-}
-
 .p-button.p-button-icon-only.edit:hover {
     background-color: #e9c111;
+    color: white;
 }
 
 :host .dialog-form input {

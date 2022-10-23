@@ -10,8 +10,8 @@
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
         [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
-        i18n-currentPageReportTemplate currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
-        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" i18n-emptyMessage emptyMessage="No records found" >
+        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No se encontraron registros" >
         
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -37,7 +37,8 @@
                         {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
                     </div>
                     <ng-template #columnEdit>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2 edit" (click)="find(rowData.id)"></button>
+                        <button pButton pRipple i18n-title title="Editar" icon="pi pi-user-edit" 
+                        class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="find(rowData.id)"></button>
                     </ng-template>
                 </td>
             </tr>
@@ -69,7 +70,7 @@
         </div>
 
             <button type="submit" [disabled]="!configForm.valid" i18n-label label="Enviar" 
-                [class.btn-disabled]="!configForm.valid" [class.tam50]="configForm.valid">Enviar</button>
+                [class.btn-disabled]="!configForm.valid" [class.tam50]="configForm.valid" i18n>Enviar</button>
 
             <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>

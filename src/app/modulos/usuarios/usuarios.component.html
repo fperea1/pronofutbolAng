@@ -2,18 +2,18 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple i18-label label="Nuevo" icon="pi pi-plus" 
+            <button type="button" pButton pRipple i18n-label label="Nuevo" icon="pi pi-plus" 
                 i18n-title title="Nuevo" (click)="openNew()"></button>
             <button type="button" pButton pRipple i18n-label label="Limpiar" icon="pi pi-sync" class="p-button-secondary" 
-                i18n-title title=="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
+                i18n-title title="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
             <button type="button" pButton pRipple i18n-label label="Exportar" icon="pi pi-upload" class="p-button-success mr-2"
-                i18n-title title="exportar" (click)="exportar()"></button>
+                i18n-title title="Exportar" (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
         [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
-        i18n-currentPageReportTemplate currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
-        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" i18n-emptyMessage emptyMessage="No records found" >
+        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No se encontraron registros" >
         
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -125,7 +125,7 @@
                     <td maxwidth="90%">
                         <p-multiSelect [options]="listRoles" formControlName="roles" [showClear]="true" 
                             optionValue="id" optionLabel="nombre" appendTo="body" lazy="true"
-                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel i18n]="'{0} roles seleccionados'">
+                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel]="'{0} roles seleccionados'">
                             
                         </p-multiSelect>
                     </td>
@@ -164,20 +164,21 @@
             Cambiar Contraseña
     </p-header>
     <div class="dialog-form">
-    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
-        <input type="hidden" formControlName="id" />
-        <div class="p-input-filled" >
-            <span><input type="text" pInputText formControlName="newPassword" size="100" i18n-placeholder placeholder="Nueva Password (*)"/></span>
+        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
+            <input type="hidden" formControlName="id" />
+            <div class="p-input-filled" >
+                <span><input type="text" pInputText formControlName="newPassword" size="100" i18n-placeholder placeholder="Nueva Password (*)"/></span>
 
-            <span><input type="text" pInputText formControlName="newPassword2" size="100" i18n-placeholder placeholder="Confirmar Password (*)"/></span>
-            
-        </div>
+                <span><input type="text" pInputText formControlName="newPassword2" size="100" i18n-placeholder placeholder="Confirmar Password (*)"/></span>
+                
+            </div>
 
-            <button type="submit" [disabled]="!passwordForm.valid" i18n-label label="Enviar" 
-                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid" i18n>Enviar</button>
+                <button type="submit" [disabled]="!passwordForm.valid" i18n-label label="Enviar" 
+                    [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid" i18n>Enviar</button>
 
-            <div class="centrado" i18n>(*) Campos obligatorios</div>
-    <p-footer></p-footer>
+                <div class="centrado" i18n>(*) Campos obligatorios</div>
+        <p-footer></p-footer>
 
-    </form>
-</div>
+        </form>
+    </div>
+</p-dialog>
