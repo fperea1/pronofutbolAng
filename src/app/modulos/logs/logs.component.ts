@@ -41,11 +41,11 @@ export class LogsComponent implements OnInit {
     this.loading = true;
 
     this.cols = [
-      { field: 'username', header: 'Usuario', width: '10%', text: true },
-      { field: 'entidad', header: 'Entidad', width: '15%', text: true },
-      { field: 'accion', header: 'Acción', width: '25%', text: true },
-      { field: 'observaciones', header: 'Observaciones', width: '25%', text: true },
-      { field: 'fecha', header: 'Fecha', width: '10%', data: true, format: 'dd/MM/yyyy HH:mm:ss' }
+      { field: 'username', header: $localize `Usuario`, width: '10%', text: true },
+      { field: 'entidad', header: $localize `Entidad`, width: '15%', text: true },
+      { field: 'accion', header: $localize `Acción`, width: '25%', text: true },
+      { field: 'observaciones', header: $localize `Observaciones`, width: '25%', text: true },
+      { field: 'fecha', header: $localize `Fecha`, width: '10%', data: true, format: 'dd/MM/yyyy HH:mm:ss' }
     ];
 
   }

@@ -49,8 +49,8 @@ export class ConfiguracionComponent implements OnInit {
     this.loading = true;
 
     this.cols = [
-      { field: 'nombre', header: 'Nombre', width: '40%' },
-      { field: 'valor', header: 'Valor', width: '40%' },
+      { field: 'nombre', header: $localize `Nombre`, width: '40%' },
+      { field: 'valor', header: $localize `Valor`, width: '40%' },
       { header: '', width: '10%' }
     ];
 
@@ -128,7 +128,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   handleSucces(data: any): void {
-    this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
+    this.messageService.add({key: 'successMensaje', severity:'success', summary: $localize `Resultado`, detail: data});
     this.display = false;
     setTimeout(() => {
           this.configuracionService.findByFilter(this.filtro).subscribe({

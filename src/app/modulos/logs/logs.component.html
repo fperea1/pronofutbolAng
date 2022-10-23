@@ -2,16 +2,16 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple label="Clear" icon="pi pi-sync" class="p-button-secondary" 
-                pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
-            <button type="button" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-success mr-2"
-                (click)="exportar()"></button>
+            <button type="button" pButton pRipple i18n-label label="Limpiar" icon="pi pi-sync" class="p-button-secondary" 
+                i18n-title title="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
+            <button type="button" pButton pRipple label="Exportar" icon="pi pi-upload" class="p-button-success mr-2"
+                i18n-title title="Exportar" (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
         [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
-        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
-        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No records found" >
+        i18n-currentPageReportTemplate currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" i18-emptyMessage emptyMessage="No records found" >
         
         <ng-template pTemplate="header" let-columns>
             <tr>

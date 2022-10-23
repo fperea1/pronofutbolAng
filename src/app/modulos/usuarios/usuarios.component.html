@@ -2,18 +2,18 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple label="Nuevo" icon="pi pi-plus" 
-                (click)="openNew()"></button>
-            <button type="button" pButton pRipple label="Clear" icon="pi pi-sync" class="p-button-secondary" 
-                pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
-            <button type="button" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-success mr-2"
-                (click)="exportar()"></button>
+            <button type="button" pButton pRipple i18-label label="Nuevo" icon="pi pi-plus" 
+                i18n-title title="Nuevo" (click)="openNew()"></button>
+            <button type="button" pButton pRipple i18n-label label="Limpiar" icon="pi pi-sync" class="p-button-secondary" 
+                i18n-title title=="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
+            <button type="button" pButton pRipple i18n-label label="Exportar" icon="pi pi-upload" class="p-button-success mr-2"
+                i18n-title title="exportar" (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
         [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
-        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
-        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No records found" >
+        i18n-currentPageReportTemplate currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" i18n-emptyMessage emptyMessage="No records found" >
         
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -28,8 +28,7 @@
                 <th *ngFor="let col of columns" >
                     <div *ngIf="col.header != ''">
                         <div *ngIf="col.data" >
-
-                              <p-columnFilter type="date" field="{{col.field}}" >
+                            <p-columnFilter type="date" field="{{col.field}}" >
                                 <ng-template pTemplate="filter" let-filter="filterCallback">
                                    <p-calendar dateFormat="dd/mm/yy" [showButtonBar]="true" (onSelect)="filter($event)"
                                     [showTime]="true" [showSeconds]="true" hourFormat="24" [readonlyInput]="true">
@@ -64,7 +63,7 @@
             <tr>
                 <td *ngFor="let col of columns">
                     <div *ngIf="col.header != ''; else columnEdit">
-                        <div *ngIf="col.header != 'Roles'; else columnRoles">
+                        <div *ngIf="col.field != 'roles'; else columnRoles">
                             {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
                         </div>
                         <ng-template #columnRoles>
@@ -72,18 +71,18 @@
                         </ng-template>
                     </div>
                     <ng-template #columnEdit>
-                        <button pButton pRipple title="Editar" icon="pi pi-user-edit" 
+                        <button pButton pRipple i18n-title title="Editar" icon="pi pi-user-edit" 
                             class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="find(rowData.id)"></button>
                         
-                        <button pButton pRipple title="Cambiar Contraseña" icon="pi pi-key" 
+                        <button pButton pRipple i18n-title title="Cambiar Contraseña" icon="pi pi-key" 
                             class="p-button-rounded p-button-info p-button-outlined mr-2 change" (click)="showDialogPassword(rowData.id)"></button>
 
-                        <button *ngIf="rowData.activo == true; else botonActivar" pButton pRipple title="Desactivar" 
+                        <button *ngIf="rowData.activo == true; else botonActivar" pButton pRipple i18n-title title="Desactivar" 
                             icon="pi pi-lock" (click)="desactivar(rowData.id)" 
                             class="p-button-rounded p-button-danger p-button-outlined mr-2 desactivar" ></button>
                            
                         <ng-template #botonActivar>
-                            <button pButton pRipple title="Activar" icon="pi pi-lock-open" (click)="activar(rowData.id)"
+                            <button pButton pRipple i18n-title title="Activar" icon="pi pi-lock-open" (click)="activar(rowData.id)"
                                 class="p-button-rounded p-button-success p-button-outlined mr-2 activar" ></button>
                         </ng-template>
                     </ng-template>
@@ -95,7 +94,7 @@
 
 <p-dialog [(visible)]="display" >
 
-    <p-header >
+    <p-header i18n>
             Edición de usuario
     </p-header>
     <div class="dialog-form">
@@ -107,41 +106,41 @@
         <div class="p-input-filled" >
             <table>
                 <tr>
-                    <td><label for="nombre">Nombre (*)</label></td>
+                    <td><label for="nombre" i18n>Nombre (*)</label></td>
                     <td colspan="3"><input type="text" id="nombre" pInputText formControlName="nombre" size="50" /></td>
                 </tr>
 
                 <tr>
-                    <td><label for="username">Username (*)</label></td>
+                    <td><label for="username" i18n>Username (*)</label></td>
                     <td colspan="3"><input type="text" id="username" pInputText formControlName="username" size="50" /></td>
                 </tr>
 
                 <tr *ngIf="userForm.get('id').value == null">
-                    <td><label for="password">Password (*)</label></td>
+                    <td><label for="password" i18n>Password (*)</label></td>
                     <td colspan="3"><input type="text" id="password" pInputText formControlName="password" maxsize="100" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label for="roles">Roles (*)</label></td> 
+                    <td><label for="roles" i18n>Roles (*)</label></td> 
                     <td maxwidth="90%">
                         <p-multiSelect [options]="listRoles" formControlName="roles" [showClear]="true" 
                             optionValue="id" optionLabel="nombre" appendTo="body" lazy="true"
-                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel]="'{0} roles seleccionados'">
+                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel i18n]="'{0} roles seleccionados'">
                             
                         </p-multiSelect>
                     </td>
 
-                    <td><label for="activo">Activo</label></td> 
+                    <td><label for="activo" i18n>Activo</label></td> 
                     <td>
-                        <span *ngIf="userForm != null && userForm.get('activo').value == true; else tdNo">Si</span>
+                        <span *ngIf="userForm != null && userForm.get('activo').value == true; else tdNo" i18n>Si</span>
                         <ng-template #tdNo>
-                            <span>No</span>
+                            <span i18n>No</span>
                         </ng-template>
                     </td>
                 </tr>
                 
                 <tr>
-                    <td><label for="email">Email (*)</label></td> 
+                    <td><label for="email" i18n>Email (*)</label></td> 
                     <td colspan="3"><input type="text" id="email" pInputText formControlName="email" /></td>
                 </tr>
 
@@ -149,9 +148,9 @@
         </div>
 
             <button type="submit" [disabled]="!userForm.valid" label="Enviar" 
-                [class.btn-disabled]="!userForm.valid" [class.tam50]="userForm.valid">Enviar</button>
+                [class.btn-disabled]="!userForm.valid" [class.tam50]="userForm.valid" i18n>Enviar</button>
 
-            <div class="centrado">(*) Campos obligatorios</div>
+            <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
 
     </form>
@@ -161,23 +160,23 @@
 
 <p-dialog [(visible)]="displayPassword" >
 
-    <p-header >
+    <p-header i18n>
             Cambiar Contraseña
     </p-header>
     <div class="dialog-form">
     <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
         <input type="hidden" formControlName="id" />
         <div class="p-input-filled" >
-            <span><input type="text" pInputText formControlName="newPassword" size="100" placeholder="Nueva Password (*)"/></span>
+            <span><input type="text" pInputText formControlName="newPassword" size="100" i18n-placeholder placeholder="Nueva Password (*)"/></span>
 
-            <span><input type="text" pInputText formControlName="newPassword2" size="100" placeholder="Confirmar Password (*)"/></span>
+            <span><input type="text" pInputText formControlName="newPassword2" size="100" i18n-placeholder placeholder="Confirmar Password (*)"/></span>
             
         </div>
 
-            <button type="submit" [disabled]="!passwordForm.valid" label="Enviar" 
-                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid">Enviar</button>
+            <button type="submit" [disabled]="!passwordForm.valid" i18n-label label="Enviar" 
+                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid" i18n>Enviar</button>
 
-            <div class="centrado">(*) Campos obligatorios</div>
+            <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
 
     </form>

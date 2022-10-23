@@ -2,16 +2,16 @@
     <div class="flex">
         <span class="titulo">{{titulo}}</span>
         <span class="iconos">
-            <button type="button" pButton pRipple label="Clear" icon="pi pi-sync" class="p-button-secondary" 
-                pTooltip="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
-            <button type="button" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-success mr-2"
-                (click)="exportar()"></button>
+            <button type="button" pButton pRipple i18n-label label="Limpiar" icon="pi pi-sync" class="p-button-secondary" 
+                i18n-title title="Limpiar Filtro" tooltipPosition="bottom" (click)="clear(dt)"></button>
+            <button type="button" pButton pRipple i18n-label label="Exportar" icon="pi pi-upload" class="p-button-success mr-2"
+                i18n-title title="Exportar" (click)="exportar()"></button>
         </span>
     </div>
     <p-table #dt [columns]="cols" [value]="registros" [resizableColumns]="true" [scrollable]="true" scrollHeight="60vh"
         [paginator]="true" [rows]="7" [showCurrentPageReport]="true" [loading]="loading" [lazy]="true" (onLazyLoad)="loadRegistros($event)"
-        currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
-        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" emptyMessage="No records found" >
+        i18n-currentPageReportTemplate currentPageReportTemplate="Se muestran de {{first}} a {{last}} de {{totalRecords}} registros" [totalRecords]="totalRecords"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped" i18n-emptyMessage emptyMessage="No records found" >
         
         <ng-template pTemplate="header" let-columns>
             <tr>
@@ -47,7 +47,7 @@
 
 <p-dialog [(visible)]="display" >
 
-    <p-header >
+    <p-header i18n>
             Edición de configuración
     </p-header>
     <div class="dialog-form">
@@ -57,21 +57,21 @@
         <div class="p-input-filled" >
             <table>
                 <tr>
-                    <td><label for="nombre">Nombre</label></td>
+                    <td><label for="nombre" i18n>Nombre</label></td>
                     <td>{{configForm.get('nombre').value}}</td>
                 </tr>
                 
                 <tr>
-                    <td><label for="valor">Valor (*)</label></td> 
+                    <td><label for="valor" i18n>Valor (*)</label></td> 
                     <td><input type="text" id="valor" pInputText formControlName="valor" size="500" /></td>
                 </tr>
             </table>
         </div>
 
-            <button type="submit" [disabled]="!configForm.valid" label="Enviar" 
+            <button type="submit" [disabled]="!configForm.valid" i18n-label label="Enviar" 
                 [class.btn-disabled]="!configForm.valid" [class.tam50]="configForm.valid">Enviar</button>
 
-            <div class="centrado">(*) Campos obligatorios</div>
+            <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
 
     </form>

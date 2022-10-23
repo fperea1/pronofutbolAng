@@ -56,13 +56,13 @@ export class UsuariosComponent implements OnInit {
     this.loading = true;
 
     this.cols = [
-      { field: 'nombre', header: 'Nombre', text: true },
-      { field: 'username', header: 'Username', text: true },
-      { field: 'email', header: 'Email', text: true },
-      { field: 'fechaAlta', header: 'Fecha de Alta', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
-      { field: 'fechaDesactivacion', header: 'Fecha de Baja', data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
-      { field: 'activo', header: 'Activo',  boolean: true},
-      { field: 'roles', header: 'Roles', lista: true },
+      { field: 'nombre', header: $localize `Nombre`, text: true },
+      { field: 'username', header: $localize `Username`, text: true },
+      { field: 'email', header: $localize `Email`, text: true },
+      { field: 'fechaAlta', header: $localize `Fecha de Alta`, data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
+      { field: 'fechaDesactivacion', header: $localize `Fecha de Baja`, data: true, format: 'dd/MM/yyyy HH:mm:ss'  },
+      { field: 'activo', header: $localize `Activo`,  boolean: true},
+      { field: 'roles', header: $localize `Roles`, lista: true },
       { header: '', width: '10%' }
     ];
 
@@ -193,7 +193,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   handleSucces(data: any): void {
-    this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
+    this.messageService.add({key: 'successMensaje', severity:'success', summary: $localize `Resultado`, detail: data});
     this.display = false;
     setTimeout(() => {
           this.usuariosService.findByFilter(this.filtro).subscribe({
@@ -229,7 +229,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   handleSuccesPassword(data: any): void {
-    this.messageService.add({key: 'successMensaje', severity:'success', summary: 'Resultado', detail: data});
+    this.messageService.add({key: 'successMensaje', severity:'success', summary: $localize `Resultado`, detail: data});
     this.displayPassword = false;
     
   }

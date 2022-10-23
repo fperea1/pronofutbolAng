@@ -11,7 +11,7 @@ export class WelcomeComponent implements OnInit {
   constructor(private breadcrumbService: BreadcrumbService) {}
 
   ngOnInit(): void {
-    this.breadcrumbService.cambioBreadcrumb('Inicio'); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Inicio`); 
   }
 
 }

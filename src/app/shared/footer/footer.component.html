@@ -2,9 +2,9 @@
 
 <span class="contacto">
     <div *ngIf="isAuth">
-        <i class="pi pi-key" aria-hidden="true" (click)="showDialogPassword()" title="Cambiar Contraseña"></i>
+        <i class="pi pi-key" aria-hidden="true" (click)="showDialogPassword()" i18n-title title="Cambiar Contraseña"></i>
     </div>
-    <i class="pi pi-envelope" aria-hidden="true" (click)="showDialogContacto()" title="Contacto"></i>
+    <i class="pi pi-envelope" aria-hidden="true" (click)="showDialogContacto()" i18n-title title="Contacto"></i>
 </span>
 
 
@@ -12,23 +12,23 @@
 
 <p-dialog [(visible)]="displayContacto" >
 
-    <p-header >
+    <p-header i18n>
             Contacto con el administrador
     </p-header>
     <div class="dialog-form">
     <form [formGroup]="contactForm" (ngSubmit)="contact()" method="post">
         
         <div class="p-input-filled" >
-            <span><input type="text" pInputText formControlName="asunto" size="32" placeholder="Asunto (*)"/></span>
+            <span><input type="text" pInputText formControlName="asunto" size="32" i18n-placeholder placeholder="Asunto (*)"/></span>
             
             <span><textarea [rows]="5" [cols]="30" formControlName="consulta" 
-                required pInputTextarea placeholder="Consulta (*)"></textarea></span>
+                required pInputTextarea i18n-placeholder placeholder="Consulta (*)"></textarea></span>
         </div>
 
             <button type="submit" [disabled]="!contactForm.valid" label="Enviar" 
-                [class.btn-disabled]="!contactForm.valid" [class.tam50]="contactForm.valid">Enviar</button>
+                [class.btn-disabled]="!contactForm.valid" [class.tam50]="contactForm.valid" i18n>Enviar</button>
 
-            <div class="centrado">(*) Campos obligatorios</div>
+            <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
 
     </form>
@@ -38,25 +38,25 @@
 
 <p-dialog [(visible)]="displayPassword" >
 
-    <p-header >
+    <p-header i18n>
             Cambiar Contraseña
     </p-header>
     <div class="dialog-form">
     <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
         
         <div class="p-input-filled" >
-            <span><input type="text" pInputText formControlName="oldPassword" size="100" placeholder="Password Anterior (*)"/></span>
+            <span><input type="text" pInputText formControlName="oldPassword" size="100" i18n-placeholder placeholder="Password Anterior (*)"/></span>
 
-            <span><input type="text" pInputText formControlName="newPassword" size="100" placeholder="Nueva Password (*)"/></span>
+            <span><input type="text" pInputText formControlName="newPassword" size="100" i18n-placeholder placeholder="Nueva Password (*)"/></span>
 
-            <span><input type="text" pInputText formControlName="newPassword2" size="100" placeholder="Confirmar Password (*)"/></span>
+            <span><input type="text" pInputText formControlName="newPassword2" size="100" i18n-placeholder placeholder="Confirmar Password (*)"/></span>
             
         </div>
 
-            <button type="submit" [disabled]="!passwordForm.valid" label="Enviar" 
-                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid">Enviar</button>
+            <button type="submit" [disabled]="!passwordForm.valid" i18n-label label="Enviar" 
+                [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid" i18n>Enviar</button>
 
-            <div class="centrado">(*) Campos obligatorios</div>
+            <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
 
     </form>
