@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.redirect();
+    //this.redirect();
   
     this.countries = [
       {name: '中國人', code: 'zh'},
@@ -75,7 +75,8 @@ export class HeaderComponent implements OnInit {
 
   redirect() {
     if (window.location.pathname.length == 1) {
-      window.location.href = this.getContextPath() + this.getLanguage();
+      var url = window.location.protocol + "//" + window.location.host + '/' + this.getLanguage();
+      window.location.href = url;
     }
   };
 
@@ -120,7 +121,7 @@ export class HeaderComponent implements OnInit {
     this.showFlags = !this.showFlags;
     this.classFlagSelected = 'flagSelected';
     this.languageStorageService.saveLang(this.getLocale(code));
-    var url = window.location.protocol + "//" + window.location.host + '/' + code
+    var url = window.location.protocol + "//" + window.location.host + '/' + code;
     window.location.href = url;
   }
   
