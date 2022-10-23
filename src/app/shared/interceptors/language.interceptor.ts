@@ -15,9 +15,6 @@ export class LanguageInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     request = request.clone({ params: request.params.set('lang', this.languageStorageService.getLang())});
-   // request.headers.delete('Accept-Language');
-   // request = request.clone({ headers: request.headers.set('Accept-Language', this.languageStorageService.getLang().split('_')[0])});
-    
     return next.handle(request);
   }
 }
