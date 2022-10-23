@@ -94,34 +94,6 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1857640281973960721" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{first}}"/> bis <x id="INTERPOLATION_1" equiv-text="{{last}}"/> von <x id="INTERPOLATION_2" equiv-text="{{totalRecords}}"/> Datens&auml;tzen werden angezeigt</source>
-        <target></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modulos/configuracion/configuracion.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modulos/logs/logs.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modulos/usuarios/usuarios.component.html</context>
-          <context context-type="linenumber">15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3415443094953675188" datatype="html">
-        <source>No se encontraron registros</source>
-        <target>Keine Aufzeichnungen gefunden</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modulos/configuracion/configuracion.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/modulos/usuarios/usuarios.component.html</context>
-          <context context-type="linenumber">16</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="604586570017583926" datatype="html">
         <source> Edición de configuración </source>
         <target>Konfiguration bearbeiten</target>
@@ -652,7 +624,7 @@
       </trans-unit>
       <trans-unit id="5091172343721283466" datatype="html">
         <source> - Home</source>
-        <target> - Anfang</target>
+        <target> - Heimat</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/menu/menu.component.ts</context>
           <context context-type="linenumber">66</context>
