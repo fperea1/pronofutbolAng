@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit id="6963191316307453802" datatype="html">
         <source>Roles (*)</source>
-        <target>Rollen (*)</target>
+        <target>Roles (*)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/modulos/usuarios/usuarios.component.html</context>
           <context context-type="linenumber">124</context>
