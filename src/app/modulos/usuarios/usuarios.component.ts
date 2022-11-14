@@ -167,7 +167,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   setUser(usuario: Usuario) {
-    usuario.password = null;
+    //usuario.password = null;
     let ids: number[] = [];
     for (let r of usuario.roles){
       ids.push(r.id);
