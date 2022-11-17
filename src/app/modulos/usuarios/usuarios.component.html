@@ -64,7 +64,8 @@
                 <td *ngFor="let col of columns">
                     <div *ngIf="col.header != ''; else columnEdit">
                         <div *ngIf="col.field != 'roles'; else columnRoles">
-                            {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
+                            {{ col.data ? (rowData[col.field] | date : col.format) : 
+                                col.boolean ? (rowData[col.field] === true ? 'Si' : 'No') :rowData[col.field] }}
                         </div>
                         <ng-template #columnRoles>
                             <span *ngFor="let rol of rowData[col.field]">{{rol.nombre}}<br/></span>
