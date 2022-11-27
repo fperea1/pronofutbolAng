@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "baseRest": {
+    "pronofutbol": {
       "projectType": "application", 
       "schematics": {
         "@schematics/angular:application": {
@@ -107,28 +107,28 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "baseRest:build:production"
+              "browserTarget": "pronofutbol:build:production"
             },
             "development": {
-              "browserTarget": "baseRest:build:development"
+              "browserTarget": "pronofutbol:build:development"
             },
             "fr": {
-              "browserTarget": "baseRest:build:development,fr"
+              "browserTarget": "pronofutbol:build:development,fr"
             },
             "de": {
-              "browserTarget": "baseRest:build:development,de"
+              "browserTarget": "pronofutbol:build:development,de"
             },
             "zh": {
-              "browserTarget": "baseRest:build:development,zh"
+              "browserTarget": "pronofutbol:build:development,zh"
             },
             "it": {
-              "browserTarget": "baseRest:build:development,it"
+              "browserTarget": "pronofutbol:build:development,it"
             },
             "en": {
-              "browserTarget": "baseRest:build:development,en"
+              "browserTarget": "pronofutbol:build:development,en"
             },
             "es": {
-              "browserTarget": "baseRest:build:development,es"
+              "browserTarget": "pronofutbol:build:development,es"
             }
           },
           "defaultConfiguration": "development"
@@ -136,7 +136,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "baseRest:build"
+            "browserTarget": "pronofutbol:build"
           }
         },
         "test": {
@@ -159,5 +159,5 @@
       }
     }
   },
-  "defaultProject": "baseRest"
+  "defaultProject": "pronofutbol"
 }
