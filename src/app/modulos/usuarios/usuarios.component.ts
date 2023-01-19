@@ -151,19 +151,19 @@ export class UsuariosComponent implements OnInit {
     this.display = true;
   }
 
-  find(id: number) {
+  getById(id: number) {
     
     this.usuariosService.findAllRoles().subscribe({
       next: this.setAllRoles.bind(this)
     });
 
-    this.usuariosService.findById(id).subscribe({
+    this.usuariosService.getById(id).subscribe({
       next: this.setUser.bind(this)
     });
   }
 
   setAllRoles(res: any) {
-    this.listRoles = res.list;
+    this.listRoles = res;
   }
 
   setUser(usuario: Usuario) {

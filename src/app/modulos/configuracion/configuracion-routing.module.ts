@@ -8,7 +8,7 @@ const routes: Routes = [
     path : 'configuracion', 
     component : ConfiguracionComponent,
     canActivate: [AuthorizationGuard],
-    data: {expectedRole: ['SUPERUSUARIO', 'ADMINISTRADOR']}
+    data: {expectedRole: ['SUPERUSUARIO']}
   }
 ];
 

@@ -110,8 +110,8 @@ export class ConfiguracionComponent implements OnInit {
       return this.registros ? this.first === 0 : true;
   }
 
-  find(id: number) {
-    this.configuracionService.findById(id).subscribe({
+  getById(id: number) {
+    this.configuracionService.getById(id).subscribe({
       next: this.cargarConfiguracion.bind(this)
     });
   }

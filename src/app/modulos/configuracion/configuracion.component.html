@@ -37,8 +37,8 @@
                         {{ col.data ? (rowData[col.field] | date : col.format) : rowData[col.field] }}
                     </div>
                     <ng-template #columnEdit>
-                        <button pButton pRipple i18n-title title="Editar" icon="pi pi-user-edit" 
-                        class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="find(rowData.id)"></button>
+                        <button pButton pRipple i18n-title title="Editar" icon="pi pi-pencil" 
+                        class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="getById(rowData.id)"></button>
                     </ng-template>
                 </td>
             </tr>

@@ -24,13 +24,13 @@ export class UsuariosService {
 
   findAllRoles(): Observable <any> {
   
-    return this.http.get<any>('roles/findAll');
+    return this.http.get<any>('roles/findForSelect');
   }
 
-  findById(id: number): Observable <Usuario> {
+  getById(id: number): Observable <Usuario> {
   
     const params = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<Usuario>('usuarios/find', params);
+    return this.http.get<Usuario>('usuarios/getById', params);
   }
 
   update(usuario: Usuario) {

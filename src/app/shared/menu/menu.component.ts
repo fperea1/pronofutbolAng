@@ -27,36 +27,69 @@ export class MenuComponent implements OnInit {
     this.authorizationService.change.subscribe((data:boolean) => {
     
       this.items = [
-        {
-          label: $localize `Informes`,
-          visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION', 'CONSULTA']),
-          items: [
-              {label: $localize `Web`, icon: 'pi pi-cloud',
-                  routerLink: ['/reportWeb'], routerLinkActiveOptions: 'active', 
-                  visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-              {label: $localize `Excel`, icon: 'pi pi-file-excel',
-                  routerLink: ['/reportExcel'], routerLinkActiveOptions: 'active', 
-                  visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
-              {label: $localize `Gráficos`, icon: 'pi pi-chart-line',
-                  routerLink: ['/graficos'], routerLinkActiveOptions: 'active', 
-                  visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION'])}
-          ]
+          {
+            label: $localize `Mantenimiento`,
+            visible: this.isVisible(['SUPERUSUARIO']),
+            items: [
+                {label: $localize `Países`, icon: 'pi pi-globe',
+                  routerLink: ['/paises'], routerLinkActiveOptions: 'active', 
+                  visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Ligas`, icon: 'pi pi-flag-fill',
+                    routerLink: ['/ligas'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Quinielas`, icon: 'pi pi-book',
+                    routerLink: ['/quinielas'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Jornadas`, icon: 'pi pi-calendar-times',
+                    routerLink: ['/jornadas'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Árbitros`, icon: 'pi pi-users',
+                    routerLink: ['/arbitros'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Equipos`, icon: 'pi pi-list',
+                    routerLink: ['/equipos'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Enfrentamientos`, icon: 'pi pi-arrows-h',
+                    routerLink: ['/enfrentamientos'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Partidos`, icon: 'pi pi-chart-bar',
+                    routerLink: ['/partidos'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Tipos de sorteo`, icon: 'pi pi-sliders-h',
+                    routerLink: ['/tiposSorteos'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])}
+            ]
+          },
+          {
+            label: $localize `Informes`,
+            visible: this.isVisible(['SUPERUSUARIO']),
+            items: [
+                {label: $localize `Web`, icon: 'pi pi-cloud',
+                    routerLink: ['/reportWeb'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Excel`, icon: 'pi pi-file-excel',
+                    routerLink: ['/reportExcel'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])},
+                {label: $localize `Gráficos`, icon: 'pi pi-chart-line',
+                    routerLink: ['/graficos'], routerLinkActiveOptions: 'active', 
+                    visible: this.isVisible(['SUPERUSUARIO'])}
+            ]
           },
           {
             label: $localize `Administración`,
-            visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR', 'MODIFICACION']),
+            visible: this.isVisible(['SUPERUSUARIO']),
             items: [
                 {label: $localize `Usuarios`, icon: 'pi pi-users',
                     routerLink: ['/usuarios'], routerLinkActiveOptions: 'active', 
-                    visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
+                    visible: this.isVisible(['SUPERUSUARIO'])},
                 {label: $localize `Configuración`, icon: 'pi pi-cog',
                     routerLink: ['/configuracion'], routerLinkActiveOptions: 'active', 
-                    visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])},
+                    visible: this.isVisible(['SUPERUSUARIO'])},
                 {label: $localize `Logs`, icon: 'pi pi-book',
                     routerLink: ['/logs'], routerLinkActiveOptions: 'active', 
-                    visible: this.isVisible(['SUPERUSUARIO', 'ADMINISTRADOR'])}
+                    visible: this.isVisible(['SUPERUSUARIO'])}
             ]
-            }
+          }
       ];
 
       this.isAuth = data;

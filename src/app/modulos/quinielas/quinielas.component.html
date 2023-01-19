@@ -39,13 +39,16 @@
                         <div *ngIf="col.text" >
                             <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
                         </div>
+                        <div *ngIf="col.number" >
+                            <p-columnFilter type="text" field="{{col.field}}" ></p-columnFilter>
+                        </div>
                         <div *ngIf="col.boolean" >
                             <p-columnFilter type="boolean" field="{{col.field}}" matchMode="boolean" ></p-columnFilter>
                         </div>
                         <div *ngIf="col.lista" >
                             <p-columnFilter field="{{col.field}}" matchMode="select" [showMenu]="false">
                                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                    <p-multiSelect [ngModel]="value" [options]="listRoles" (onChange)="filter($event.value)" optionLabel="nombre">
+                                    <p-multiSelect [ngModel]="value" [options]="listLigas" (onChange)="filter($event.value)" optionLabel="nombre">
                                         <ng-template let-option pTemplate="item">
                                             <div>
                                                 <span class="ml-1">{{option.nombre}}</span>
@@ -63,29 +66,21 @@
             <tr>
                 <td *ngFor="let col of columns">
                     <div *ngIf="col.header != ''; else columnEdit">
-                        <div *ngIf="col.field != 'roles'; else columnRoles">
+                        <div *ngIf="col.field != 'liga'; else columnLigas">
                             {{ col.data ? (rowData[col.field] | date : col.format) : 
                                 col.boolean ? (rowData[col.field] === true ? 'Si' : 'No') :rowData[col.field] }}
                         </div>
-                        <ng-template #columnRoles>
-                            <span *ngFor="let rol of rowData[col.field]">{{rol.nombre}}<br/></span>
+                        <ng-template #columnLigas>
+                            {{ rowData[col.field].nombre }}
                         </ng-template>
                     </div>
                     <ng-template #columnEdit>
                         <button pButton pRipple i18n-title title="Editar" icon="pi pi-pencil" 
                             class="p-button-rounded p-button-warning p-button-outlined mr-2 edit" (click)="getById(rowData.id)"></button>
                         
-                        <button pButton pRipple i18n-title title="Cambiar Contraseña" icon="pi pi-key" 
-                            class="p-button-rounded p-button-info p-button-outlined mr-2 change" (click)="showDialogPassword(rowData.id)"></button>
-
-                        <button *ngIf="rowData.activo == true; else botonActivar" pButton pRipple i18n-title title="Desactivar" 
-                            icon="pi pi-lock" (click)="desactivar(rowData.id)" 
-                            class="p-button-rounded p-button-danger p-button-outlined mr-2 desactivar" ></button>
+                        <button pButton pRipple i18n-title title="Borrar" icon="pi pi-times" 
+                            class="p-button-rounded p-button-danger p-button-outlined mr-2 borrar" (click)="delete(rowData.id)" ></button>
                            
-                        <ng-template #botonActivar>
-                            <button pButton pRipple i18n-title title="Activar" icon="pi pi-lock-open" (click)="activar(rowData.id)"
-                                class="p-button-rounded p-button-success p-button-outlined mr-2 activar" ></button>
-                        </ng-template>
                     </ng-template>
                 </td>
             </tr>
@@ -96,60 +91,48 @@
 <p-dialog [(visible)]="display" >
 
     <p-header i18n>
-            Edición de usuario
+            Edición de quiniela
     </p-header>
     <div class="dialog-form">
-    <form [formGroup]="userForm" (ngSubmit)="update()" method="post" >
+    <form [formGroup]="form" (ngSubmit)="update()" method="post" >
         <input type="hidden" formControlName="id" />
-        <input type="hidden" formControlName="fechaAlta" />
-        <input type="hidden" formControlName="fechaDesactivacion" />
-        <input type="hidden" formControlName="activo" />
+        <input type="hidden" formControlName="actualizada" />
         <div class="p-input-filled" >
             <table>
+
+                <tr>
+                    <td><label for="numero" i18n>Número (*)</label></td>
+                    <td colspan="3"><input type="text" id="numero" pInputText formControlName="numero" size="2"/></td>
+                </tr>
+
                 <tr>
                     <td><label for="nombre" i18n>Nombre (*)</label></td>
                     <td colspan="3"><input type="text" id="nombre" pInputText formControlName="nombre" size="50" /></td>
                 </tr>
-
+                
                 <tr>
-                    <td><label for="username" i18n>Username (*)</label></td>
-                    <td colspan="3"><input type="text" id="username" pInputText formControlName="username" size="50" /></td>
-                </tr>
-
-                <tr *ngIf="userForm.get('id').value == null">
-                    <td><label for="password" i18n>Password (*)</label></td>
-                    <td colspan="3"><input type="text" id="password" pInputText formControlName="password" maxsize="100" /></td>
+                    <td><label for="fecha" i18n>Fecha (*)</label></td>
+                    <td colspan="3"><p-calendar id="fecha" formControlName="fecha" [showIcon]="true" dateFormat="dd/mm/yy">
+                        
+                    </p-calendar></td>
                 </tr>
                 
                 <tr>
-                    <td><label for="roles" i18n>Roles (*)</label></td> 
+                    <td><label for="Liga" i18n>Liga (*)</label></td> 
                     <td maxwidth="90%">
-                        <p-multiSelect [options]="listRoles" formControlName="roles" [showClear]="true" 
+                        <p-dropdown [options]="listLigas" formControlName="liga" [showClear]="true" 
                             optionValue="id" optionLabel="nombre" appendTo="body" lazy="true"
-                            [style]="{width:'100%'}" [maxSelectedLabels]="3" [selectedItemsLabel]="'{0} roles seleccionados'">
-                            
-                        </p-multiSelect>
+                            [style]="{width:'100%'}" [autoDisplayFirst]="false" i18n-placeholder placeholder="Seleccionar">
+                        </p-dropdown>
+                        
                     </td>
-
-                    <td><label for="activo" i18n>Activo</label></td> 
-                    <td>
-                        <span *ngIf="userForm != null && userForm.get('activo').value == true; else tdNo" i18n>Si</span>
-                        <ng-template #tdNo>
-                            <span i18n>No</span>
-                        </ng-template>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td><label for="email" i18n>Email (*)</label></td> 
-                    <td colspan="3"><input type="text" id="email" pInputText formControlName="email" /></td>
                 </tr>
 
             </table>
         </div>
 
-            <button type="submit" [disabled]="!userForm.valid" label="Enviar" 
-                [class.btn-disabled]="!userForm.valid" [class.tam50]="userForm.valid" i18n>Enviar</button>
+            <button type="submit" [disabled]="!form.valid" label="Enviar" 
+                [class.btn-disabled]="!form.valid" [class.tam50]="form.valid" i18n>Enviar</button>
 
             <div class="centrado" i18n>(*) Campos obligatorios</div>
     <p-footer></p-footer>
@@ -159,27 +142,3 @@
 
 </p-dialog>
 
-<p-dialog [(visible)]="displayPassword" >
-
-    <p-header i18n>
-            Cambiar Contraseña
-    </p-header>
-    <div class="dialog-form">
-        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" method="post">
-            <input type="hidden" formControlName="id" />
-            <div class="p-input-filled" >
-                <span><input type="text" pInputText formControlName="newPassword" size="100" i18n-placeholder placeholder="Nueva Password (*)"/></span>
-
-                <span><input type="text" pInputText formControlName="newPassword2" size="100" i18n-placeholder placeholder="Confirmar Password (*)"/></span>
-                
-            </div>
-
-                <button type="submit" [disabled]="!passwordForm.valid" i18n-label label="Enviar" 
-                    [class.btn-disabled]="!passwordForm.valid" [class.tam50]="passwordForm.valid" i18n>Enviar</button>
-
-                <div class="centrado" i18n>(*) Campos obligatorios</div>
-        <p-footer></p-footer>
-
-        </form>
-    </div>
-</p-dialog>

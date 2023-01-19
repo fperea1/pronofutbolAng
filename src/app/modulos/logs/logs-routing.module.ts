@@ -8,7 +8,7 @@ const logsRoutes: Routes = [
     path : 'logs', 
     component : LogsComponent,
     canActivate: [AuthorizationGuard],
-    data: {expectedRole: ['SUPERUSUARIO', 'ADMINISTRADOR']}
+    data: {expectedRole: ['SUPERUSUARIO']}
   }
 ];
 
