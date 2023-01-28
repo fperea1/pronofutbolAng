@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PaisesRoutingModule } from './paises-routing.module';
-import { PaisesComponent } from './paises.component';
-import { PaisesService } from './paises.service';
+import { JornadasRoutingModule } from './jornadas-routing.module';
+import { JornadasComponent } from './jornadas.component';
+import { JornadasService } from './jornadas.service';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
@@ -15,11 +15,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    PaisesComponent
+    JornadasComponent
   ],
   imports: [
     CommonModule,
-    PaisesRoutingModule,
+    JornadasRoutingModule,
     FormsModule,
     ButtonModule,
     DialogModule,
@@ -30,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   providers: [
-    PaisesService
+    JornadasService
   ]
 })
-export class PaisesModule { }
+export class JornadasModule { }

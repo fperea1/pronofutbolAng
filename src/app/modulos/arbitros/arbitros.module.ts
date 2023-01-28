@@ -1,25 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ArbitrosRoutingModule } from './arbitros-routing.module';
+import { ArbitrosComponent } from './arbitros.component';
 
-import { PaisesRoutingModule } from './paises-routing.module';
-import { PaisesComponent } from './paises.component';
-import { PaisesService } from './paises.service';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
+import { ArbitrosService } from './arbitros.service';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputTextModule } from 'primeng/inputtext'; 
 import { ReactiveFormsModule } from '@angular/forms';
+import { LigasService } from '../ligas/ligas.service';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    PaisesComponent
+    ArbitrosComponent
   ],
   imports: [
     CommonModule,
-    PaisesRoutingModule,
+    ArbitrosRoutingModule,
     FormsModule,
     ButtonModule,
     DialogModule,
@@ -27,10 +31,14 @@ import { ReactiveFormsModule } from '@angular/forms';
     TableModule,
     BrowserAnimationsModule,
     InputTextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MultiSelectModule,
+    CalendarModule,
+    DropdownModule
   ],
   providers: [
-    PaisesService
+    ArbitrosService,
+    LigasService
   ]
 })
-export class PaisesModule { }
+export class ArbitrosModule { }

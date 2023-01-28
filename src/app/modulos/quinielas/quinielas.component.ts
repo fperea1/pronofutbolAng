@@ -72,7 +72,7 @@ export class QuinielasComponent implements OnInit {
       'liga': ['', [Validators.required]]
     });
 
-    this.ligasService.findAllLigas().subscribe({
+    this.ligasService.findForSelect().subscribe({
       next: this.setAllLigas.bind(this)
     });
   }
@@ -106,6 +106,15 @@ export class QuinielasComponent implements OnInit {
     }, 1000);
   }
 
+  checkNumber($event) {
+    let regex: RegExp = new RegExp(/^[0-9]{1,}$/g);
+    if (regex.test($event.key)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   next() {
       this.first = this.first + this.last;
   }
@@ -128,7 +137,7 @@ export class QuinielasComponent implements OnInit {
 
   openNew() {
 
-    this.ligasService.findAllLigas().subscribe({
+    this.ligasService.findForSelect().subscribe({
       next: this.setAllLigas.bind(this)
     });
     this.form.reset();
@@ -137,7 +146,7 @@ export class QuinielasComponent implements OnInit {
   }
 
   getById(id: number) {
-    this.ligasService.findAllLigas().subscribe({
+    this.ligasService.findForSelect().subscribe({
       next: this.setAllLigas.bind(this)
     });
 

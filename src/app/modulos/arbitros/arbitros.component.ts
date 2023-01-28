@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Liga } from './liga';
-import { LigasService } from './ligas.service';
-import { Pais } from '../paises/pais';
-import { PaisesService } from '../paises/paises.service';
+import { Arbitro } from './arbitro';
+import { Liga } from '../ligas/liga';
+import { ArbitrosService } from './arbitros.service';
+import { LigasService } from '../ligas/ligas.service';
 import { BreadcrumbService } from '../../shared/menu/breadcrumb.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -12,21 +12,21 @@ import { formatDate } from '@angular/common';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-ligas',
-  templateUrl: './ligas.component.html',
-  styleUrls: ['./ligas.component.css']
+  selector: 'app-arbitros',
+  templateUrl: './arbitros.component.html',
+  styleUrls: ['./arbitros.component.css']
 })
-export class LigasComponent implements OnInit {
+export class ArbitrosComponent implements OnInit {
 
-  titulo: String = $localize `Ligas`;
+  titulo: String = $localize `Árbitros`;
 
-  liga: Liga;
+  arbitro: Arbitro;
 
   display: boolean = false;
 
   form: FormGroup;
 
-  registros: Liga[];
+  registros: Arbitro[];
 
   cols: any[];
 
@@ -38,36 +38,42 @@ export class LigasComponent implements OnInit {
 
   totalRecords: number = 0;
 
-  listPaises: Pais[];
+  listLigas: Liga[];
 
   filtro: string;
 
   filtroTablaInicial= '{"first":0,"rows":7,"sortOrder":1,"filters":{},"globalFilter":null}';
 
   constructor(private fb: FormBuilder, private messageService: MessageService, 
-    private ligasService: LigasService, private breadcrumbService: BreadcrumbService,
-    private paisesService: PaisesService) { }
+    private arbitrosService: ArbitrosService, private breadcrumbService: BreadcrumbService,
+    private ligasService: LigasService) { }
 
   ngOnInit(): void {
 
-    this.breadcrumbService.cambioBreadcrumb($localize `Ligas`); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Árbitros`); 
     
     this.loading = true;
 
     this.cols = [
-      { field: 'nombre', header: $localize `Nombre`, text: true  },
-      { field: 'pais', header: $localize `Pais`, lista: true },
-      { header: '', width: '10%' }
+      { field: 'nombre', header: $localize `Nombre`, text: true },
+      { field: 'ganadosLocal', header: $localize `ganadosLocal`, number: true },
+      { field: 'empatados', header: $localize `empatados`, number: true },
+      { field: 'ganadosVisitante', header: $localize `ganadosVisitante`, number: true },
+      { field: 'liga', header: $localize `Liga`, lista: true },
+      { header: '' }
     ];
 
     this.form = this.fb.group({
       'id': ['', []],
-      'nombre': ['', [Validators.required, Validators.maxLength(50)]],
-      'pais': ['', [Validators.required]]
+      'nombre': ['', [Validators.required, Validators.maxLength(100)]],
+      'ganadosLocal': ['', [Validators.required]],
+      'empatados': ['', [Validators.required]],
+      'ganadosVisitante': ['', [Validators.required]],
+      'liga': ['', [Validators.required]]
     });
 
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
+    this.ligasService.findForSelect().subscribe({
+      next: this.setAllLigas.bind(this)
     });
   }
   
@@ -80,7 +86,7 @@ export class LigasComponent implements OnInit {
   exportar() {
     
 		const filename = 'report_' + formatDate(Date.now(),'yyyy-MM-dd', 'en-US') + '.xlsx';
-    this.ligasService.getReportExcel(this.filtro).subscribe(blob => saveAs(blob, filename));
+    this.arbitrosService.getReportExcel(this.filtro).subscribe(blob => saveAs(blob, filename));
   }
 
   loadRegistros(event: LazyLoadEvent) {
@@ -94,10 +100,19 @@ export class LigasComponent implements OnInit {
     this.filtro = JSON.stringify(event);
 
     setTimeout(() => {
-          this.ligasService.findByFilter(this.filtro).subscribe({
+          this.arbitrosService.findByFilter(this.filtro).subscribe({
               next: this.cargarTabla.bind(this)
           });
     }, 1000);
+  }
+
+  checkNumber($event) {
+    let regex: RegExp = new RegExp(/^[0-9]{1,}$/g);
+    if (regex.test($event.key)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   next() {
@@ -122,46 +137,47 @@ export class LigasComponent implements OnInit {
 
   openNew() {
 
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
+    this.ligasService.findForSelect().subscribe({
+      next: this.setAllLigas.bind(this)
     });
     this.form.reset();
     this.display = true;
   }
 
   getById(id: number) {
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
+    this.ligasService.findForSelect().subscribe({
+      next: this.setAllLigas.bind(this)
     });
 
-    this.ligasService.getById(id).subscribe({
+    this.arbitrosService.getById(id).subscribe({
       next: this.cargarDto.bind(this)
     });
   }
 
-  setAllPaises(res: any) {
-    this.listPaises = res;
+  setAllLigas(res: any) {
+    this.listLigas = res;
   }
 
-  cargarDto(liga: Liga) {
-    this.form.setValue(liga);
-    this.form.get('pais').setValue(liga.pais.id);
+  cargarDto(arbitro: Arbitro) {
+    this.form.setValue(arbitro);
+    this.form.get('liga').setValue(arbitro.liga.id);
     this.display = true;
   }
 
   update(): void  {
-    let pais: Pais = {
-      id: this.form.get('pais').value,
-      nombre: ''
+    let liga: Liga = {
+      id: this.form.get('liga').value,
+      nombre: '',
+      pais: null
     };
-    this.form.get('pais').setValue(pais);
-    this.ligasService.update(this.form.value).subscribe({
+    this.form.get('liga').setValue(liga);
+    this.arbitrosService.update(this.form.value).subscribe({
       next: this.handleSucces.bind(this)
     });
   }
 
   delete(id: number): void  {
-    this.ligasService.delete(id).subscribe({
+    this.arbitrosService.delete(id).subscribe({
       next: this.handleSucces.bind(this)
     });
   }
@@ -170,7 +186,7 @@ export class LigasComponent implements OnInit {
     this.messageService.add({key: 'successMensaje', severity:'success', summary: $localize `Resultado`, detail: data});
     this.display = false;
     setTimeout(() => {
-          this.ligasService.findByFilter(this.filtro).subscribe({
+          this.arbitrosService.findByFilter(this.filtro).subscribe({
               next: this.cargarTabla.bind(this)
           });
     }, 1000);

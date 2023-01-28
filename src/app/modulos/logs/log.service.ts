@@ -8,15 +8,17 @@ export class LogService {
 
   constructor(private http: HttpClient) { }
 
+  endpoint: String = 'logs';
+
   findByFilter(filtro: string): Observable <any> {
   
     const params = filtro ? { params: new HttpParams().set('filtro', filtro) } : {};
-    return this.http.get<any>('logs/findByFilter', params);
+    return this.http.get<any>(this.endpoint + '/findByFilter', params);
   }
 
   getReportExcel(filtro: string): Observable <Blob> {
   
-    return this.http.get('logs/getReportExcel?filtro='+encodeURI(filtro), {responseType: 'blob'});
+    return this.http.get(this.endpoint + '/getReportExcel?filtro='+encodeURI(filtro), {responseType: 'blob'});
     
   }
 }

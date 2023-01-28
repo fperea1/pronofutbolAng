@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
-import { Configuracion } from './configuracion';
+import { Pais } from './pais';
 
 @Injectable()
-export class ConfiguracionService {
+export class PaisesService {
 
   constructor(private http: HttpClient) { }
 
-  endpoint: String = 'configuracion';
+  endpoint: String = 'paises';
 
   findByFilter(filtro: string): Observable <any> {
   
@@ -23,14 +23,22 @@ export class ConfiguracionService {
     
   }
 
-  getById(id: number): Observable <Configuracion> {
+  getById(id: number): Observable <Pais> {
   
     const params = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<Configuracion>(this.endpoint + '/getById', params);
+    return this.http.get<Pais>(this.endpoint + '/getById', params);
   }
 
-  update(configuracion: Configuracion) {
-    return this.http.put(this.endpoint + '/update', configuracion, {responseType: 'text'});
+  update(pais: Pais) {
+    return this.http.put(this.endpoint + '/update', pais, {responseType: 'text'});
   }
 
+  findForSelect(): Observable <any> {
+  
+    return this.http.get<any>(this.endpoint + '/findForSelect');
+  }
+
+  delete(id: number) {
+     return this.http.delete(this.endpoint + '/delete/' + id, {responseType: 'text'});
+  }
 }

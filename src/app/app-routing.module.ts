@@ -10,6 +10,8 @@ import { UsuariosModule } from './modulos/usuarios/usuarios.module';
 import { PaisesModule } from './modulos/paises/paises.module';
 import { LigasModule } from './modulos/ligas/ligas.module';
 import { QuinielasModule } from './modulos/quinielas/quinielas.module';
+import { JornadasModule } from './modulos/jornadas/jornadas.module';
+import { ArbitrosModule } from './modulos/arbitros/arbitros.module';
 
 const routes: Routes = [
   { path: '', component: AuthenticationComponent },
@@ -27,6 +29,8 @@ const routes: Routes = [
     PaisesModule,
     LigasModule,
     QuinielasModule,
+    JornadasModule,
+    ArbitrosModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Liga } from './liga';
-import { LigasService } from './ligas.service';
-import { Pais } from '../paises/pais';
-import { PaisesService } from '../paises/paises.service';
+import { Jornada } from './jornada';
+import { JornadasService } from './jornadas.service';
 import { BreadcrumbService } from '../../shared/menu/breadcrumb.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -12,21 +10,21 @@ import { formatDate } from '@angular/common';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-ligas',
-  templateUrl: './ligas.component.html',
-  styleUrls: ['./ligas.component.css']
+  selector: 'app-jornadas',
+  templateUrl: './jornadas.component.html',
+  styleUrls: ['./jornadas.component.css']
 })
-export class LigasComponent implements OnInit {
+export class JornadasComponent implements OnInit {
 
-  titulo: String = $localize `Ligas`;
+  titulo: String = $localize `Jornadas`;
 
-  liga: Liga;
+  jornada: Jornada;
 
   display: boolean = false;
 
   form: FormGroup;
 
-  registros: Liga[];
+  registros: Jornada[];
 
   cols: any[];
 
@@ -38,36 +36,29 @@ export class LigasComponent implements OnInit {
 
   totalRecords: number = 0;
 
-  listPaises: Pais[];
+  listJornadas: Jornada[];
 
   filtro: string;
 
   filtroTablaInicial= '{"first":0,"rows":7,"sortOrder":1,"filters":{},"globalFilter":null}';
 
   constructor(private fb: FormBuilder, private messageService: MessageService, 
-    private ligasService: LigasService, private breadcrumbService: BreadcrumbService,
-    private paisesService: PaisesService) { }
+    private jornadasService: JornadasService, private breadcrumbService: BreadcrumbService) { }
 
   ngOnInit(): void {
 
-    this.breadcrumbService.cambioBreadcrumb($localize `Ligas`); 
+    this.breadcrumbService.cambioBreadcrumb($localize `Jornadas`); 
     
     this.loading = true;
 
     this.cols = [
       { field: 'nombre', header: $localize `Nombre`, text: true  },
-      { field: 'pais', header: $localize `Pais`, lista: true },
       { header: '', width: '10%' }
     ];
 
     this.form = this.fb.group({
       'id': ['', []],
-      'nombre': ['', [Validators.required, Validators.maxLength(50)]],
-      'pais': ['', [Validators.required]]
-    });
-
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
+      'nombre': ['', [Validators.required, Validators.maxLength(50)]]
     });
   }
   
@@ -80,7 +71,7 @@ export class LigasComponent implements OnInit {
   exportar() {
     
 		const filename = 'report_' + formatDate(Date.now(),'yyyy-MM-dd', 'en-US') + '.xlsx';
-    this.ligasService.getReportExcel(this.filtro).subscribe(blob => saveAs(blob, filename));
+    this.jornadasService.getReportExcel(this.filtro).subscribe(blob => saveAs(blob, filename));
   }
 
   loadRegistros(event: LazyLoadEvent) {
@@ -94,7 +85,7 @@ export class LigasComponent implements OnInit {
     this.filtro = JSON.stringify(event);
 
     setTimeout(() => {
-          this.ligasService.findByFilter(this.filtro).subscribe({
+          this.jornadasService.findByFilter(this.filtro).subscribe({
               next: this.cargarTabla.bind(this)
           });
     }, 1000);
@@ -121,47 +112,30 @@ export class LigasComponent implements OnInit {
   }
 
   openNew() {
-
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
-    });
     this.form.reset();
     this.display = true;
   }
 
   getById(id: number) {
-    this.paisesService.findForSelect().subscribe({
-      next: this.setAllPaises.bind(this)
-    });
 
-    this.ligasService.getById(id).subscribe({
+    this.jornadasService.getById(id).subscribe({
       next: this.cargarDto.bind(this)
     });
   }
 
-  setAllPaises(res: any) {
-    this.listPaises = res;
-  }
-
-  cargarDto(liga: Liga) {
-    this.form.setValue(liga);
-    this.form.get('pais').setValue(liga.pais.id);
+  cargarDto(jornada: Jornada) {
+    this.form.setValue(jornada);
     this.display = true;
   }
 
   update(): void  {
-    let pais: Pais = {
-      id: this.form.get('pais').value,
-      nombre: ''
-    };
-    this.form.get('pais').setValue(pais);
-    this.ligasService.update(this.form.value).subscribe({
+    this.jornadasService.update(this.form.value).subscribe({
       next: this.handleSucces.bind(this)
     });
   }
 
   delete(id: number): void  {
-    this.ligasService.delete(id).subscribe({
+    this.jornadasService.delete(id).subscribe({
       next: this.handleSucces.bind(this)
     });
   }
@@ -170,7 +144,7 @@ export class LigasComponent implements OnInit {
     this.messageService.add({key: 'successMensaje', severity:'success', summary: $localize `Resultado`, detail: data});
     this.display = false;
     setTimeout(() => {
-          this.ligasService.findByFilter(this.filtro).subscribe({
+          this.jornadasService.findByFilter(this.filtro).subscribe({
               next: this.cargarTabla.bind(this)
           });
     }, 1000);

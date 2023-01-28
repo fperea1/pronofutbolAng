@@ -10,51 +10,55 @@ export class UsuariosService {
 
   constructor(private http: HttpClient) { }
 
+  endpoint: String = 'usuarios';
+
+  endpointRoles: String = 'configuracion';
+
   findByFilter(filtro: string): Observable <any> {
   
     const params = filtro ? { params: new HttpParams().set('filtro', filtro) } : {};
-    return this.http.get<any>('usuarios/findByFilter', params);
+    return this.http.get<any>(this.endpoint + '/findByFilter', params);
   }
 
   getReportExcel(filtro: string): Observable <Blob> {
   
-    return this.http.get('usuarios/getReportExcel?filtro='+encodeURI(filtro), {responseType: 'blob'});
+    return this.http.get(this.endpoint + '/getReportExcel?filtro='+encodeURI(filtro), {responseType: 'blob'});
     
   }
 
   findAllRoles(): Observable <any> {
   
-    return this.http.get<any>('roles/findForSelect');
+    return this.http.get<any>(this.endpointRoles + '/findForSelect');
   }
 
   getById(id: number): Observable <Usuario> {
   
     const params = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.get<Usuario>('usuarios/getById', params);
+    return this.http.get<Usuario>(this.endpoint + '/getById', params);
   }
 
   update(usuario: Usuario) {
     if (usuario.id == null) {
-      return this.http.post('usuarios/save', usuario, {responseType: 'text'});
+      return this.http.post(this.endpoint + '/save', usuario, {responseType: 'text'});
     } else {
-      return this.http.put('usuarios/update', usuario, {responseType: 'text'});
+      return this.http.put(this.endpoint + '/update', usuario, {responseType: 'text'});
     }
   }
 
   activar(id: number) {
   
     //const params = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.put('usuarios/activate', id, {responseType: 'text'});
+    return this.http.put(this.endpoint + '/activate', id, {responseType: 'text'});
   }
 
   desactivar(id: number) {
   
     //const params = id ? { params: new HttpParams().set('id', id) } : {};
-    return this.http.put('usuarios/deactivate', id, {responseType: 'text'});
+    return this.http.put(this.endpoint + '/deactivate', id, {responseType: 'text'});
   }
 
   changePassword(pass: CambioPassword) {
-    return this.http.put('usuarios/cambioPasswordAdmin', pass, {responseType: 'text'});
+    return this.http.put(this.endpoint + '/cambioPasswordAdmin', pass, {responseType: 'text'});
   }
 
 }

@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { QuinielasRoutingModule } from './quinielas-routing.module';
+import { QuinielasComponent } from './quinielas.component';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { TableModule } from 'primeng/table';
-import { QuinielasRoutingModule } from './quinielas-routing.module';
-import { QuinielasComponent } from './quinielas.component';
 import { QuinielasService } from './quinielas.service';
 import { DialogModule } from 'primeng/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
