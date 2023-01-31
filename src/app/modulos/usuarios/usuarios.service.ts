@@ -12,7 +12,7 @@ export class UsuariosService {
 
   endpoint: String = 'usuarios';
 
-  endpointRoles: String = 'configuracion';
+  endpointRoles: String = 'roles';
 
   findByFilter(filtro: string): Observable <any> {
   
